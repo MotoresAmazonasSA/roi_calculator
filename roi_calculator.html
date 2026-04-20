@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora Ríos Solares</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+  background-color: #f5f7fb;
+}
+
+.header, .section, .footer-info {
+  background: white;
+  padding: 2%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+h2 {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+}
+
+label {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+label, small {
+    display: block;
+  }
+
+.toggle button {
+  width: 50%;
+}
+
+.toggle .active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.footer-info a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.result-box {
+  background: #eef4ff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid px-3 px-md-5 py-4">
+
+<!-- HEADER -->
+<div class="header text-center text-md-start">
+  <h1>Calculadora Ríos Solares</h1>
+  <p>
+    Bienvenido a la Calculadora Ríos Solares de Fundación Kara Solar.<br>
+    ¿Vale la pena cambiar de gasolina a solar? Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de la transición al bote solar.
+  </p>
+</div>
+
+<!-- MAIN GRID -->
+<div class="row g-3">
+
+  <!-- LEFT COLUMN -->
+  <div class="col-12 col-lg-6">
+
+    <div class="section">
+      <h2>Uso del bote</h2>
+
+      <label>Kilómetros navegados en bote por semana en promedio</label>
+      <input id="km" type="number" class="form-control" value="50">
+
+      <label>Precio local por galón de gasolina</label>
+      <input id="gas_price" type="number" class="form-control">
+    </div>
+
+    <div class="section">
+      <h2>Motor de gasolina</h2>
+
+      <label>Costo de un motor peque-peque de gasolina en la zona</label>
+      <small>¿No sabes? Déjalo como está.</small>
+      <input type="number" class="form-control" value="900">
+
+      <label>Kilómetros por galón</label>
+      <small>Rendimiento del motor. ¿No sabes? Déjalo como está.</small>
+      <input type="number" class="form-control" value="14">
+
+      <label>Gasto anual en mantenimiento y reparaciones del motor de gasolina</label>
+      <small>Incluye aceite, viajes al mecánico y cualquier otro gasto para mantener tu motor. ¿No sabes? Déjalo como está.</small>
+      <input type="number" class="form-control" value="300">
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-12 col-lg-6">
+
+    <div class="section">
+      <h2>Sistema solar</h2>
+
+      <label>Costo de un sistema de transporte solar de Motores Amazonas</label>
+      <small>Incluye motor eléctrico y batería. Cada batería permite recorrer unos 30 km por carga.</small>
+      <small>$6000</small>
+      <input id="base_cost" type="number" class="form-control" value="6000" disabled>
+
+      <label class="mt-3">¿Paneles solares?</label>
+      <small>Los paneles cuestan $1.500. Si se usará otra fuente de energía, Deja en N.</small>
+      <div class="toggle btn-group w-100">
+        <button class="btn btn-outline-primary active" onclick="setToggle(this,'panel',true)">S</button>
+        <button class="btn btn-outline-primary" onclick="setToggle(this,'panel',false)">N</button>
+      </div>
+
+      <label class="mt-3">¿Segunda batería?</label>
+      <small>Una batería extra cuesta $2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.</small>
+      <div class="toggle btn-group w-100">
+        <button class="btn btn-outline-primary active" onclick="setToggle(this,'battery',true)">S</button>
+        <button class="btn btn-outline-primary" onclick="setToggle(this,'battery',false)">N</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Financiamiento</h2>
+
+      <label>Pago inicial</label>
+      <small>Mientras más se pague de entrada, menos se pagará después.</small>
+      <input id="down" type="number" class="form-control" value="200">
+
+      <label>Subsidio o ayuda económica</label>
+      <small>¿Se recibirá apoyo de alguna fundación, fondo comunitario u otro aliado? Si no aplica, deja en blanco.</small>
+      <input id="subsidy" type="number" class="form-control" value="0">
+
+      <label class="mt-3">
+        Pago mensual: <strong>$<span id="pago_val">80</span></strong>
+      </label>
+      <small>Recuerda que con un bote solar, ya no se necesita pagar gasolina. Tip: Cuanto más se pague cada mes, antes se termina de pagar.</small>
+      <input id="pago" type="range" class="form-range" min="50" max="300" step="10" value="80">
+
+      <label class="mt-3">Tasa de interés anual (%)</label>
+      <small>Si no aplica, deja en blanco.</small>
+      <input id="interest" type="number" class="form-control">
+
+      <div class="result-box">
+        Plazo estimado: <span id="nper">-</span> meses
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="text-center mt-4">
+  <button onclick="goToResults()" class="btn btn-primary btn-lg w-100 w-md-auto">
+    Ver resultados
+  </button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-info mt-4">
+  <div class="row">
+
+    <div class="col-12 col-md-4">
+      <h2>Sobre los botes solares de Motores Amazonas</h2>
+      <p>
+       Nuestros motores eléctricos se fabrican en Ecuador para las condiciones de la selva y ofrecen la misma potencia que un motor peque-peque a gasolina de 9 HP, comúnmente usado en la región para recorridos locales. No generan costos de combustible, son silenciosos y no contaminan el río con aceite. El motor se monta sobre un chasis de pata larga y funciona con baterías de litio en un contenedor resistente, proporcionando aproximadamente 30 km de autonomía por carga. Se pueden combinar varias baterías para viajes más largos y agregar paneles solares para operación totalmente autónoma. Nuestros equipos cuentan con una garantía de 5 años en Ecuador.
+      </p>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <h2>Motores Amazonas</h2>
+      <p>
+        Motores eléctricos diseñados para la selva amazónica.
+        <br>
+        <a href="https://motoresamazonas.com/" target="_blank">Visitar sitio→</a>
+      </p>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <h2>Kara Solar</h2>
+      <p>
+        Impulsa modelos de ríos solares en comunidades indígenas.
+        <br>
+        <a href="https://karasolar.com/" target="_blank">Visitar sitio →</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+const state = {
+  panel: true,
+  battery: true
+};
+
+const pagoSlider = document.getElementById("pago");
+const pagoVal = document.getElementById("pago_val");
+
+pagoSlider.oninput = () => {
+  pagoVal.innerText = pagoSlider.value;
+  calculate();
+};
+
+function setToggle(button, key, value) {
+  state[key] = value;
+
+  const buttons = button.parentElement.querySelectorAll("button");
+  buttons.forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+
+  calculate();
+}
+
+document.querySelectorAll("input").forEach(i => {
+  i.addEventListener("input", calculate);
+});
+
+function calculateMinPayment(pv, rate, maxMonths = 60) {
+  if (rate === 0) {
+    return pv / maxMonths;
+  }
+
+  return (rate * pv) / (1 - Math.pow(1 + rate, -maxMonths));
+}
+
+function goToResults() {
+  const params = new URLSearchParams({
+    km: document.getElementById("km").value,
+    gas_price: document.getElementById("gas_price").value,
+    km_per_gallon: 14, // adjust if dynamic later
+    maintenance: 300,
+    engine_cost: 900,
+    down: document.getElementById("down").value,
+    pago: document.getElementById("pago").value,
+    interest: document.getElementById("interest").value,
+    panel: state.panel ? 1 : 0,
+    battery: state.battery ? 1 : 0,
+    subsidy: document.getElementById("subsidy")?.value || 0,
+    nper: document.getElementById("nper").innerText
+  });
+
+  window.location.href = "results.html?" + params.toString();
+}
+
+function calculate() {
+  let base = 6000;
+  let panel = state.panel ? 1500 : 0;
+  let battery = state.battery ? 2500 : 0;
+
+  let down = parseFloat(document.getElementById("down").value) || 0;
+  let rateAnnual = parseFloat(document.getElementById("interest").value) || 0;
+  let subsidy = parseFloat(document.getElementById("subsidy").value) || 0;
+
+  let rate = rateAnnual / 100 / 12;
+  let pv = (base + panel + battery) - down - subsidy;
+
+  // 🔥 Calculate minimum payment for 60 months
+  let minPayment = calculateMinPayment(pv, rate, 60);
+
+  // enforce slider minimum
+  pagoSlider.min = Math.max(50, Math.ceil(minPayment));
+
+  // update if current value is too low
+  if (parseFloat(pagoSlider.value) < pagoSlider.min) {
+    pagoSlider.value = pagoSlider.min;
+  }
+
+  pagoVal.innerText = pagoSlider.value;
+
+  let pmt = parseFloat(pagoSlider.value);
+
+  // NPER
+  let nper;
+  if (rate === 0) {
+    nper = pv / pmt;
+  } else {
+    nper = Math.log(pmt / (pmt - rate * pv)) / Math.log(1 + rate);
+  }
+
+  document.getElementById("nper").innerText =
+    isFinite(nper) ? Math.round(nper) : "Pago muy bajo";
+}
+
+calculate();
+</script>
+
+</body>
+</html>
