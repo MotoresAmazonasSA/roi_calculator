@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Ríos Solares</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+
+    #map {
+      height: 400px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+    }
+
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      background: var(--green);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    :root {
+      --green: #178a68;
+      --green-dark: #0f5f48;
+      --bg: #f4f7f5;
+      --card: #ffffff;
+      --border: #dce5e0;
+      --text: #1f2937;
+      --muted: #6b7280;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      padding: 2rem 0 4rem;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .stepper {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .step-card {
+      flex: 1;
+      min-width: 220px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .step-card.active {
+      border-color: var(--green);
+      background: #f6fffb;
+    }
+
+    .step-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e9f6f1;
+      color: var(--green-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-card.active .step-circle {
+      background: var(--green);
+      color: white;
+    }
+
+    .step-title {
+      font-weight: 700;
+    }
+
+    .step-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      color: var(--green-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    small {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .form-control,
+    .form-range {
+      border-radius: 12px;
+      border-color: var(--border);
+      padding: 0.85rem 1rem;
+    }
+
+    .toggle-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 12px;
+      padding: 0.8rem;
+      color: black;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .toggle-btn.active {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .primary-btn {
+      border: none;
+      background: var(--green);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .result-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .metric-card {
+      background: #f7faf8;
+      border-radius: 18px;
+      padding: 1.5rem;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .wizard-step {
+      display: none;
+    }
+
+    .wizard-step.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero,
+      .section-card,
+      .result-card {
+        padding: 1.4rem;
+      }
+    }
+
+    /* ── CHANGE 1: Hamburger menu ── */
+    .hamburger-btn {
+      position: fixed;
+      top: 1.1rem;
+      left: 1.1rem;
+      z-index: 1100;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+    .side-menu {
+      position: fixed;
+      top: 0; left: 0;
+      width: 270px;
+      height: 100%;
+      background: white;
+      border-right: 1px solid var(--border);
+      z-index: 1200;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      padding: 2rem 1.5rem;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+    }
+    .side-menu.open { transform: translateX(0); }
+    .side-menu-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 1150;
+    }
+    .side-menu-overlay.open { display: block; }
+    .side-menu-logo {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .side-menu nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 0.97rem;
+      transition: background 0.15s;
+    }
+    .side-menu nav a:hover { background: #f0faf5; color: var(--green-dark); }
+    .side-menu nav a.active { background: #e6f7f0; color: var(--green-dark); }
+
+    /* ── CHANGE 1: Menu pages ── */
+    .menu-page { display: none; }
+    .menu-page.active { display: block; }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .info-card h2 {
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .info-card h3 {
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+    .info-card p, .info-card li {
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .info-card ul { padding-left: 1.25rem; }
+    .info-card a { color: var(--green); }
+
+    /* ── CHANGE 1: Warning card ── */
+    .warning-card {
+      background: #fffbeb;
+      border: 1.5px solid #f59e0b;
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: none;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .warning-card.visible { display: flex; }
+    .warning-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .warning-text strong { color: #92400e; display: block; margin-bottom: 0.3rem; font-size: 1rem; }
+    .warning-text p { color: #78350f; margin: 0; font-size: 0.92rem; line-height: 1.65; }
+
+    /* ── CHANGE 1: Equipment breakdown ── */
+    .breakdown-card {
+      background: #f7faf8;
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .breakdown-card h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .breakdown-row:last-child {
+      border: none;
+      font-weight: 700;
+      color: var(--green-dark);
+      padding-top: 0.75rem;
+      font-size: 1rem;
+    }
+    /* 3-column variant for the comparison table */
+    .breakdown-row--3col {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 1.5rem;
+    }
+    .breakdown-row--3col span:nth-child(2),
+    .breakdown-row--3col span:nth-child(3) {
+      min-width: 80px;
+      text-align: right;
+    }
+    .breakdown-row--header {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 700;
+      padding-bottom: 0.75rem;
+    }
+    .breakdown-row--header:last-child {
+      font-weight: 700;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* ── CHANGE 1: Summary narrative ── */
+    .summary-card {
+      background: #f0faf5;
+      border: 1px solid #a7d7c0;
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      line-height: 1.8;
+      font-size: 0.97rem;
+      color: var(--text);
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- CHANGE 2: Hamburger button -->
+<button class="hamburger-btn" onclick="openMenu()" aria-label="Menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- CHANGE 2: Sidebar overlay -->
+<div class="side-menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
+
+<!-- CHANGE 2: Sidebar -->
+<div class="side-menu" id="side-menu">
+  <div class="side-menu-logo">Ríos Solares</div>
+  <nav>
+    <a href="#" class="active" id="nav-calculadora" onclick="navigateTo('calculadora'); return false;">🧮 Calculadora</a>
+    <a href="#" id="nav-supuestos"  onclick="navigateTo('supuestos');  return false;">📋 Supuestos</a>
+    <a href="#" id="nav-protocolo"  onclick="navigateTo('protocolo');  return false;">🔒 Protocolo de datos</a>
+    <a href="#" id="nav-aviso"      onclick="navigateTo('aviso');      return false;">⚖️ Aviso Legal</a>
+  </nav>
+</div>
+
+<div class="container-fluid app-shell">
+  <div class="main-container px-2 px-md-4">
+
+    <!-- CHANGE 3 & 4: Calculadora page wrapper -->
+    <div id="page-calculadora" class="menu-page active">
+
+      <div class="hero">
+        <h1>Calculadora Ríos Solares</h1>
+        <p>
+          Esta herramienta permite comparar costos, estimar ahorros y evaluar la
+          viabilidad financiera de cambiar de gasolina a transporte solar.
+        </p>
+      </div>
+
+      <!-- STEP 1 -->
+      <section class="wizard-step active" id="step-1">
+
+        <div class="section-card">
+          <div class="section-title">Paso 1 de 3 — Uso Actual</div>
+
+          <Label>UBICACIÓN</Label>
+          <label>Selecciona la ubicación aproximada</label>
+
+          <small>
+            Haz clic en el mapa para ubicar la comunidad.
+          </small>
+
+          <div id="map"></div>
+
+          <div class="controls">
+            <!--
+            <button onclick="resetMap()">Ecuador</button>
+            -->
+            <button onclick="locateUser()">Localizame</button>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">Uso actual — gasolina</div>
+
+          <label>Kilómetros navegados en bote por semana en promedio</label>
+          <input id="km_week" type="number" class="form-control" value="50">
+
+          <label>Precio local por galón de gasolina</label>
+          <input id="gas_price" type="number" class="form-control" value="7.5">
+
+          <label>Costo de un motor peque-peque de gasolina en la zona ($)</label>
+          <small>¿No sabes? Déjalo como está.</small>
+          <input id="gas_engine_cost" type="number" class="form-control" value="900">
+
+          <label>Kilómetros por galón</label>
+          <small>Rendimiento del motor. ¿No sabes? Déjalo como está.</small>
+          <input id="km_per_gal" type="number" class="form-control" value="14">
+
+          <label>Gasto anual en mantenimiento y reparaciones del motor de gasolina ($)</label>
+          <small>Incluye aceite, viajes al mecánico y cualquier otro gasto para mantener tu motor. ¿No sabes? Déjalo como está.</small>
+          <input id="repair_cost_yr" type="number" class="form-control" value="300">
+
+          <div class="d-flex justify-content-end mt-4">
+            <button class="primary-btn" onclick="goToStep(2)">
+              Continuar →
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="wizard-step" id="step-2">
+
+        <div class="section-card">
+
+          <div class="section-title">Paso 2 de 3 — Configuración solar</div>
+
+          <label>
+            Costo del sistema de transporte solar de Motores Amazonas ($)
+          </label>
+          <small>Incluye motor eléctrico y batería. Cada batería permite recorrer unos 30 km por carga.</small>
+
+          <input id="electric_price" type="number" class="form-control" value="6000">
+
+          <label>¿Se agregarán paneles solares para cargar el bote?</label>
+          <small>Los paneles cuestan $1.500. Si se usará otra fuente de energía, Deja en NO</small>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="panel-yes">Sí</button>
+            <button class="toggle-btn" id="panel-no">No</button>
+          </div>
+
+          <label>¿Se agregará una segunda batería?</label>
+          <small>Una batería extra cuesta $2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.</small>
+
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="battery-yes">Sí</button>
+            <button class="toggle-btn" id="battery-no">No</button>
+          </div>
+        </div>
+
+        <div class="section-card">
+
+          <div class="section-title">PLAN DE PAGO</div>
+
+          <label>Pago inicial ($)</label>
+          <small>Mientras más se pague de entrada, menos se pagará después.</small>
+          <input id="downpayment" type="number" class="form-control" value="200">
+
+          <label>Subsidio o ayuda económica ($)</label>
+          <small>De fundaciones, fondos comunitarios u otros aliados. Si no aplica, deja en blanco.</small>
+          <input id="subsidy" type="number" class="form-control" value="0">
+
+          <label>Tasa de interés anual (%)</label>
+          <small>Si no aplica, deja en blanco.</small>
+          <input id="interest" type="number" class="form-control" value="0">
+
+          <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
+
+            <button class="primary-btn" onclick="goToStep(1)">
+              ← Volver
+            </button>
+
+            <button class="primary-btn" onclick="goToStep(3); calculateResults();">
+              Continuar →
+            </button>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="wizard-step" id="step-3">
+
+        <div class="section-card">
+          <div class="section-title">Paso 3 de 3 — Resultados</div>
+
+          <label>Pago mensual</label>
+
+          <input
+            id="monthly_payment"
+            type="range"
+            class="form-range"
+            min="50"
+            max="400"
+            step="10"
+            value="80"
+            oninput="calculateResults();">
+
+          <div class="fw-bold mt-2">
+            Pago mensual estimado:
+            <span id="monthly_payment_label">$80</span>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
+
+            <button class="primary-btn" onclick="goToStep(2)">
+              ← Volver
+            </button>
+            <a href="/catalogo_ma_2026.pdf" download="Catalogo Motores Amazonas 2026">
+              <button class="primary-btn">
+                Descargar Catálogo
+              </button>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- CHANGE 5a: Warning card — shown when payoff > 5 years -->
+        <div class="warning-card" id="warning-term">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-text">
+            <strong>El plazo de pago supera los 5 años</strong>
+            <p>Con estos datos, el bote tardaría más de 5 años en pagarse — más que el período de garantía de Motores Amazonas.<br>
+            Considera aumentar el pago mensual o el pago inicial para acortar el plazo.</p>
+          </div>
+        </div>
+
+        <div class="result-card">
+
+          <h2>Resultados</h2>
+
+          <!-- 1. Equipment cost breakdown -->
+          <div class="breakdown-card">
+            <h3>Sistema solar seleccionado</h3>
+            <div class="breakdown-row">
+              <span>Motor eléctrico + batería (Motores Amazonas)</span>
+              <span id="bd-motor">$6.000</span>
+            </div>
+            <div class="breakdown-row" id="bd-panels-row">
+              <span>Paneles solares</span>
+              <span id="bd-panels">$1.500</span>
+            </div>
+            <div class="breakdown-row" id="bd-battery-row">
+              <span>Segunda batería</span>
+              <span id="bd-battery">$2.500</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Costo total del sistema</span>
+              <span id="bd-total">$10.000</span>
+            </div>
+          </div>
+
+          <!-- 2. Summary narrative -->
+          <div class="summary-card">
+            Con los datos ingresados, se estima que cambiar a un bote solar permitiría pasar de gastar
+            <strong id="sum-gas-monthly">$—</strong> al mes en gasolina y mantenimiento
+            a pagar <strong id="sum-solar-monthly">$—</strong> al mes por el bote solar
+            — <span id="sum-diff-text"></span> cada mes.
+            El bote estaría pagado en <strong id="sum-payoff">—</strong>, y en 10 años
+            el ahorro total sería de <strong id="sum-savings">$—</strong>.
+          </div>
+
+          <!-- 3. Comparison table — restyled to match breakdown-card -->
+          <div class="breakdown-card" style="margin-top:1.5rem;">
+            <h3>Comparación de Ahorro a Largo Plazo</h3>
+            <div class="breakdown-row breakdown-row--3col breakdown-row--header">
+              <span>Concepto</span>
+              <span>Gasolina</span>
+              <span>Solar</span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span>Costo inicial</span>
+              <span id="gas-upfront"></span>
+              <span id="solar-upfront"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span>Costo mensual</span>
+              <span id="gas-monthly"></span>
+              <span id="solar-monthly"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span>Total a 10 años</span>
+              <span id="gas-10y"></span>
+              <span id="solar-10y"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span>Ahorro total</span>
+              <span>—</span>
+              <span id="savings-total"></span>
+            </div>
+          </div>
+
+          <!-- 4. Metric twin cards -->
+          <div class="metric-grid">
+
+            <div class="metric-card">
+              <div class="metric-label">
+                Años para terminar de pagar
+              </div>
+              <div class="metric-value" id="payoff-years"></div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-label">
+                Tiempo para recuperar la inversión
+              </div>
+              <div class="metric-value" id="roi-years"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /page-calculadora -->
+
+    <!-- CHANGE 3: PAGE — Supuestos -->
+    <div id="page-supuestos" class="menu-page">
+      <div class="info-card">
+        <h2>¿Cómo funciona esta calculadora?</h2>
+        <p>Esta herramienta estima el costo total del transporte a gasolina, lo compara con el costo de un sistema solar de Motores Amazonas, y calcula cuánto tiempo tomaría pagar el bote y recuperar la inversión. Los resultados son estimaciones y pueden variar según el uso real y las condiciones locales.</p>
+
+        <h3>Supuestos principales</h3>
+
+        <h3>Costo mensual en gasolina y mantenimiento</h3>
+        <p>
+          Galones/mes = (km/semana × 4.33) ÷ km/galón<br>
+          Combustible/mes = galones/mes × precio/galón<br>
+          Total mensual = combustible/mes + (mantenimiento anual ÷ 12)
+        </p>
+
+        <h3>Costo total del sistema solar</h3>
+        <p>
+          Costo total = motor + paneles ($1.500 si aplica) + batería extra ($2.500 si aplica)<br>
+          Monto a financiar = costo total − subsidio − pago inicial
+        </p>
+
+        <h3>Años para terminar de pagar el bote</h3>
+        <p>
+          Sin interés: meses = monto financiado ÷ pago mensual → años = meses ÷ 12<br>
+          Con interés: fórmula estándar de amortización
+        </p>
+
+        <h3>Comparación a 10 años</h3>
+        <p>En el lado de gasolina se incluye el costo inicial del motor más el gasto mensual en combustible y mantenimiento durante 120 meses. En el lado solar, se incluye el pago inicial y los pagos mensuales hasta completar el pago del bote, y $0 después.</p>
+        <p>
+          Total gasolina 10 años = costo motor gasolina + (gasto mensual × 120)<br>
+          Total solar 10 años = pago inicial + (pago mensual × meses hasta pagar, máx 120)
+        </p>
+
+        <h3>Tiempo para recuperar la inversión (ROI)</h3>
+        <p>La inversión neta es la diferencia entre el costo del sistema solar y el costo del motor de gasolina que se reemplaza. El tiempo de recuperación es cuántos años de ahorro en combustible y mantenimiento se necesitan para cubrir esa inversión neta.</p>
+        <p>
+          Inversión neta = costo total sistema solar − costo motor gasolina<br>
+          Ahorro anual = (gasto mensual combustible + mantenimiento) × 12<br>
+          ROI = inversión neta ÷ ahorro anual
+        </p>
+
+        <h3>Ejemplo</h3>
+        <p>Una familia de Sharamentsa, Ecuador, navega 60 km/semana. Precio gasolina: $7.50/galón. Rendimiento: 14 km/galón. Mantenimiento: $300/año. Motor gasolina: $900. Sistema solar completo ($10.000). Pago inicial: $500. Pago mensual: $150. Sin interés, sin subsidio.</p>
+
+        <table class="comparison-table" style="margin-top:1rem">
+          <thead>
+            <tr>
+              <th>Resultado estimado</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gasto mensual gasolina + mantenimiento</td><td>$168</td></tr>
+            <tr><td>Pago mensual por el bote solar</td><td>$150</td></tr>
+            <tr><td>Ahorro mensual durante el pago</td><td>$18</td></tr>
+            <tr><td>Años para terminar de pagar</td><td>5.1 años</td></tr>
+            <tr><td>Inversión neta (solar − motor gasolina)</td><td>$9.100</td></tr>
+            <tr><td>Ahorro anual (combustible + mantenimiento)</td><td>$2.016</td></tr>
+            <tr><td>Tiempo para recuperar la inversión</td><td>4.5 años</td></tr>
+            <tr><td>Ahorro total en 10 años</td><td>~$8.260</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /page-supuestos -->
+
+    <!-- CHANGE 3: PAGE — Protocolo de datos -->
+    <div id="page-protocolo" class="menu-page">
+      <div class="info-card">
+        <h2>Protocolo de recopilación de datos</h2>
+        <p>La Calculadora Ríos Solares recopila datos con el objetivo de mejorar la planificación del transporte solar en la Amazonía y apoyar la misión de Fundación Kara Solar.</p>
+
+        <h3>¿Qué datos se recopilan?</h3>
+        <ul>
+          <li>Ubicación (comunidad y país)</li>
+          <li>Kilómetros navegados por semana</li>
+          <li>Precio local del galón de gasolina</li>
+          <li>Rendimiento del motor (km/galón)</li>
+          <li>Costo del motor de gasolina en la zona</li>
+          <li>Gasto anual en mantenimiento</li>
+          <li>Configuración del sistema solar seleccionado</li>
+          <li>Parámetros de pago (pago inicial, pago mensual, interés, subsidio)</li>
+        </ul>
+
+        <h3>¿Cómo se usan los datos?</h3>
+        <p>Los datos se almacenan en una hoja de cálculo interna de Fundación Kara Solar. Se utilizan exclusivamente para:</p>
+        <ul>
+          <li>Analizar el costo del combustible y los patrones de uso de botes en distintas zonas de la Amazonía</li>
+          <li>Mejorar los modelos financieros para la expansión del transporte solar</li>
+          <li>Informar estrategias de financiamiento comunitario y alianzas con fondos y fundaciones</li>
+          <li>Reportes internos y de impacto para socios y financiadores</li>
+        </ul>
+
+        <h3>Privacidad y confidencialidad</h3>
+        <p>Los datos no se venden a terceros bajo ninguna circunstancia. No se recopila información de identificación personal más allá de la ubicación geográfica general. Los datos se almacenan de forma segura y solo el equipo de Fundación Kara Solar tiene acceso a ellos. Datos agregados sin identificadores específicos pueden compartirse en reportes públicos de impacto.</p>
+      </div>
+    </div><!-- /page-protocolo -->
+
+    <!-- CHANGE 3: PAGE — Aviso Legal -->
+    <div id="page-aviso" class="menu-page">
+      <div class="info-card">
+        <h2>Aviso legal y descargo de responsabilidad</h2>
+
+        <h3>Estimaciones, no garantías</h3>
+        <p>Los resultados de esta calculadora son estimaciones basadas en los datos ingresados y en supuestos generales. Los ahorros reales, plazos de pago y tiempos de recuperación de inversión pueden variar según el uso real del bote, las fluctuaciones en el precio de la gasolina, las condiciones de financiamiento y otros factores locales.</p>
+
+        <h3>Uso de datos</h3>
+        <p>Al usar esta herramienta, se acepta que los datos ingresados sean recopilados por Fundación Kara Solar con fines de investigación y planificación, según el Protocolo de datos. Los datos no serán vendidos a terceros.</p>
+
+        <h3>Sin responsabilidad financiera</h3>
+        <p>Esta herramienta no constituye asesoramiento financiero, legal o de inversión. Fundación Kara Solar y Motores Amazonas no se hacen responsables de decisiones tomadas basándose en los resultados de esta calculadora.</p>
+
+        <h3>Precios de referencia</h3>
+        <p>Los precios de los sistemas solares de Motores Amazonas son de referencia y pueden cambiar. Para precios actualizados y disponibilidad, contactar directamente a Motores Amazonas en <a href="https://motoresamazonas.com/" target="_blank">motoresamazonas.com</a>.</p>
+      </div>
+    </div><!-- /page-aviso -->
+
+  </div>
+</div>
+
+<script>
+
+let addPanels = true;
+let addBattery = true;
+
+// CHANGE 6a: Guard against missing indicator elements
+function goToStep(step) {
+
+  document.querySelectorAll('.wizard-step').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  document.querySelectorAll('.step-card').forEach(card => {
+    card.classList.remove('active');
+  });
+
+  document.getElementById(`step-${step}`).classList.add('active');
+
+  const indicator = document.getElementById(`indicator-${step}`);
+  if (indicator) indicator.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleButtons(yesBtn, noBtn, value, type) {
+
+  if (value) {
+    yesBtn.classList.add('active');
+    noBtn.classList.remove('active');
+  } else {
+    noBtn.classList.add('active');
+    yesBtn.classList.remove('active');
+  }
+
+  if (type === 'panel') addPanels = value;
+  if (type === 'battery') addBattery = value;
+}
+
+const panelYes = document.getElementById('panel-yes');
+const panelNo = document.getElementById('panel-no');
+
+const batteryYes = document.getElementById('battery-yes');
+const batteryNo = document.getElementById('battery-no');
+
+panelYes.onclick = () => { toggleButtons(panelYes, panelNo, true, 'panel'); calculateResults(); };
+panelNo.onclick  = () => { toggleButtons(panelYes, panelNo, false, 'panel'); calculateResults(); };
+
+batteryYes.onclick = () => { toggleButtons(batteryYes, batteryNo, true, 'battery'); calculateResults(); };
+batteryNo.onclick  = () => { toggleButtons(batteryYes, batteryNo, false, 'battery'); calculateResults(); };
+
+function formatMoney(value) {
+  return '$' + Math.round(value).toLocaleString('en-US');
+}
+
+const monthlySlider = document.getElementById('monthly_payment');
+
+monthlySlider.addEventListener('input', () => {
+  document.getElementById('monthly_payment_label').innerText = '$' + monthlySlider.value;
+});
+
+function calculateResults() {
+
+  const kmWeek      = parseFloat(document.getElementById('km_week').value)        || 0;
+  const gasPrice    = parseFloat(document.getElementById('gas_price').value)       || 0;
+  const gasEngine   = parseFloat(document.getElementById('gas_engine_cost').value) || 0;
+  const kmPerGal    = parseFloat(document.getElementById('km_per_gal').value)      || 14;
+  const repairsYear = parseFloat(document.getElementById('repair_cost_yr').value)  || 0;
+
+  const electricPrice  = parseFloat(document.getElementById('electric_price').value) || 6000;
+  const downpayment    = parseFloat(document.getElementById('downpayment').value)    || 0;
+  const subsidy        = parseFloat(document.getElementById('subsidy').value)        || 0;
+
+  const monthlyPayment = parseFloat(document.getElementById('monthly_payment').value) || 80;
+  const interest       = parseFloat(document.getElementById('interest').value)        || 0;
+
+  const monthlyGallons = (kmWeek * 4.33) / kmPerGal;
+  const fuelMonthly    = monthlyGallons * gasPrice;
+  const repairMonthly  = repairsYear / 12;
+  const gasMonthly     = fuelMonthly + repairMonthly;
+
+  const solarCost =
+    electricPrice +
+    (addPanels  ? 1500 : 0) +
+    (addBattery ? 2500 : 0);
+
+  const financed = Math.max(0, solarCost - subsidy - downpayment);
+
+  let months;
+
+  if (interest > 0) {
+    const r = interest / 100 / 12;
+    months = Math.ceil(
+      -Math.log(1 - financed * r / monthlyPayment) /
+      Math.log(1 + r)
+    );
+  } else {
+    months = financed / monthlyPayment;
+  }
+
+  const years = months / 12;
+
+  const gas10y   = gasEngine + gasMonthly * 120;
+  const solar10y = downpayment + monthlyPayment * Math.min(months, 120);
+  const savings  = gas10y - solar10y;
+
+  const roiYears = gasMonthly > 0
+    ? (solarCost - gasEngine) / (gasMonthly * 12)
+    : 0;
+
+  // Existing outputs
+  document.getElementById('gas-upfront').innerText    = formatMoney(gasEngine);
+  document.getElementById('solar-upfront').innerText  = formatMoney(solarCost);
+  document.getElementById('gas-monthly').innerText    = formatMoney(gasMonthly);
+  document.getElementById('solar-monthly').innerText  = formatMoney(monthlyPayment);
+  document.getElementById('gas-10y').innerText        = formatMoney(gas10y);
+  document.getElementById('solar-10y').innerText      = formatMoney(solar10y);
+  document.getElementById('savings-total').innerText  = formatMoney(savings);
+  document.getElementById('payoff-years').innerText   = years.toFixed(1) + ' años';
+  document.getElementById('roi-years').innerText      = roiYears.toFixed(1) + ' años';
+
+  // CHANGE 6b: Warning — payoff > 5 years (60 months)
+  const warningEl = document.getElementById('warning-term');
+  warningEl.classList.toggle('visible', months > 60);
+
+  // CHANGE 6b: Equipment breakdown
+  document.getElementById('bd-motor').innerText   = formatMoney(electricPrice);
+  document.getElementById('bd-panels').innerText  = formatMoney(1500);
+  document.getElementById('bd-battery').innerText = formatMoney(2500);
+  document.getElementById('bd-total').innerText   = formatMoney(solarCost);
+  document.getElementById('bd-panels-row').style.display  = addPanels  ? '' : 'none';
+  document.getElementById('bd-battery-row').style.display = addBattery ? '' : 'none';
+
+  // CHANGE 6b: Summary narrative
+  document.getElementById('sum-gas-monthly').innerText   = formatMoney(gasMonthly);
+  document.getElementById('sum-solar-monthly').innerText = formatMoney(monthlyPayment);
+  document.getElementById('sum-payoff').innerText        = years.toFixed(1) + ' años';
+  document.getElementById('sum-savings').innerText       = formatMoney(savings);
+
+  const diff        = monthlyPayment - gasMonthly;
+  const diffTextEl  = document.getElementById('sum-diff-text');
+  if (diff > 0.5) {
+    diffTextEl.innerHTML = 'pagando <strong>' + formatMoney(Math.abs(diff)) + '</strong> más';
+  } else if (diff < -0.5) {
+    diffTextEl.innerHTML = 'ahorrando <strong>' + formatMoney(Math.abs(diff)) + '</strong>';
+  } else {
+    diffTextEl.innerHTML = 'pagando prácticamente lo mismo';
+  }
+}
+
+calculateResults();
+
+// CHANGE 6a: Menu navigation
+const menuPages = ['calculadora', 'supuestos', 'protocolo', 'aviso'];
+
+function navigateTo(page) {
+  menuPages.forEach(p => {
+    const pageEl = document.getElementById('page-' + p);
+    const navEl  = document.getElementById('nav-'  + p);
+    if (pageEl) pageEl.classList.toggle('active', p === page);
+    if (navEl)  navEl.classList.toggle('active',  p === page);
+  });
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openMenu() {
+  document.getElementById('side-menu').classList.add('open');
+  document.getElementById('menu-overlay').classList.add('open');
+}
+
+function closeMenu() {
+  document.getElementById('side-menu').classList.remove('open');
+  document.getElementById('menu-overlay').classList.remove('open');
+}
+
+</script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // Ecuador default position
+  const defaultLat  = -1.8312;
+  const defaultLng  = -78.1834;
+  const defaultZoom = 6;
+
+  const map = L.map('map').setView([defaultLat, defaultLng], defaultZoom);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  let marker = L.marker([defaultLat, defaultLng], {
+    draggable: true
+  }).addTo(map);
+
+  function resetMap() {
+    map.setView([defaultLat, defaultLng], defaultZoom);
+    marker.setLatLng([defaultLat, defaultLng]);
+  }
+
+  function locateUser() {
+    if (!navigator.geolocation) {
+      alert("Geolocation not supported");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        map.setView([lat, lng], 14);
+        marker.setLatLng([lat, lng]);
+      },
+      () => {
+        alert("Could not get your location");
+      }
+    );
+  }
+
+  map.on('click', function(e) {
+    marker.setLatLng(e.latlng);
+  });
+
+  locateUser();
+</script>
+
+</body>
+</html>
