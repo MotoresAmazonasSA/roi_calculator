@@ -131,7 +131,7 @@ function calculateResults() {
   }
 }
 
-calculateResults();
+setLanguage(currentLang);
 
 function matchGasPayment() {
   const kmWeek      = parseFloat(document.getElementById('km_week').value)       || 0;
@@ -148,6 +148,21 @@ function matchGasPayment() {
   document.getElementById('monthly_payment_label').innerText = '$' + clamped;
   calculateResults();
 }
+
+// ── Tooltip toggle (for mobile / click) ──
+document.querySelectorAll('.info-icon').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tooltip = btn.closest('.info-tooltip');
+    const isOpen  = tooltip.classList.contains('open');
+    document.querySelectorAll('.info-tooltip.open').forEach(t => t.classList.remove('open'));
+    if (!isOpen) tooltip.classList.add('open');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.info-tooltip.open').forEach(t => t.classList.remove('open'));
+});
 
 // ── Navigation ──
 const menuPages = ['calculadora', 'supuestos', 'protocolo', 'aviso'];

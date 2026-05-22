@@ -45,6 +45,7 @@ const translations = {
         'step2-subsidy-hint': 'De fundaciones, fondos comunitarios u otros aliados. Si no aplica, deja en blanco.',
         'step2-interest-label': 'Tasa de interés anual (%)',
         'step2-interest-hint': 'Si no aplica, deja en blanco.',
+        'tooltip-interest': 'El interés es dinero extra que pagas cuando pides dinero prestado. Por ejemplo: si pides $100 con un interés de 10% al año, al final del año debes devolver $110 — los $100 que pediste más $10 extra. Si nadie te cobra interés, deja este campo en 0.',
         'btn-back': '← Volver',
         'btn-match-gas': 'Pagar mi costo mensual de gasolina',
 
@@ -199,6 +200,7 @@ const translations = {
         'step2-subsidy-hint': 'From foundations, community funds, or other partners. If not applicable, leave blank.',
         'step2-interest-label': 'Annual interest rate (%)',
         'step2-interest-hint': 'If not applicable, leave blank.',
+        'tooltip-interest': 'Interest is extra money you pay when borrowing money. For example: if you borrow $100 with 10% interest per year, at the end of the year you owe $110 — the $100 you borrowed plus $10 extra. If no one is charging you interest, leave this as 0.',
         'btn-back': '← Back',
         'btn-match-gas': 'Match my monthly gasoline cost',
 
@@ -353,6 +355,7 @@ const translations = {
         'step2-subsidy-hint': 'De fundações, fundos comunitários ou outros parceiros. Se não se aplica, deixe em branco.',
         'step2-interest-label': 'Taxa de juros anual (%)',
         'step2-interest-hint': 'Se não se aplica, deixe em branco.',
+        'tooltip-interest': 'Juros são um dinheiro extra que você paga ao pegar dinheiro emprestado. Por exemplo: se você pega $100 com 10% de juros ao ano, no final do ano deve devolver $110 — os $100 que pegou mais $10 a mais. Se ninguém está cobrando juros, deixe este campo como 0.',
         'btn-back': '← Voltar',
         'btn-match-gas': 'Igualar meu custo mensal de gasolina',
 
