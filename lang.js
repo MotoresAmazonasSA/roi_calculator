@@ -46,6 +46,7 @@ const translations = {
         'step2-interest-label': 'Tasa de interés anual (%)',
         'step2-interest-hint': 'Si no aplica, deja en blanco.',
         'btn-back': '← Volver',
+        'btn-match-gas': 'Pagar mi costo mensual de gasolina',
 
         'step3-title': 'Paso 3 de 3 — Resultados',
         'step3-monthly-label': 'Pago mensual',
@@ -199,6 +200,7 @@ const translations = {
         'step2-interest-label': 'Annual interest rate (%)',
         'step2-interest-hint': 'If not applicable, leave blank.',
         'btn-back': '← Back',
+        'btn-match-gas': 'Match my monthly gasoline cost',
 
         'step3-title': 'Step 3 of 3 — Results',
         'step3-monthly-label': 'Monthly payment',
@@ -308,7 +310,7 @@ const translations = {
     pt: {
         'page-title': 'Calculadora Ríos Solares',
         'hero-title': 'Calculadora Ríos Solares',
-        'hero-desc': 'Esta ferramenta permite comparar custos, estimar economias e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar.',
+        'hero-desc': 'Esta ferramenta permite comparar custos, estimar poupanças e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar.',
 
         'nav-calculadora': 'Calculadora',
         'nav-supuestos': 'Premissas',
@@ -352,6 +354,7 @@ const translations = {
         'step2-interest-label': 'Taxa de juros anual (%)',
         'step2-interest-hint': 'Se não se aplica, deixe em branco.',
         'btn-back': '← Voltar',
+        'btn-match-gas': 'Igualar meu custo mensal de gasolina',
 
         'step3-title': 'Passo 3 de 3 — Resultados',
         'step3-monthly-label': 'Pagamento mensal',
@@ -372,12 +375,12 @@ const translations = {
         'sum-text-2': 'por mês em gasolina e manutenção para pagar',
         'sum-text-3': 'por mês pelo barco solar —',
         'sum-text-4': 'a cada mês. O barco estaria pago em',
-        'sum-text-5': ', e em 10 anos a economia total seria de',
+        'sum-text-5': ', e em 10 anos a poupança total seria de',
         'sum-diff-more': 'pagando <strong>{amount}</strong> a mais',
-        'sum-diff-less': 'economizando <strong>{amount}</strong>',
+        'sum-diff-less': 'poupando <strong>{amount}</strong>',
         'sum-diff-same': 'pagando praticamente o mesmo',
 
-        'comparison-title': 'Comparação de Economia a Longo Prazo',
+        'comparison-title': 'Comparação de Poupança a Longo Prazo',
         'col-concept': 'Item',
         'col-gas': 'Gasolina',
         'col-solar': 'Solar',
@@ -403,8 +406,8 @@ const translations = {
             <p>No lado da gasolina inclui-se o custo inicial do motor mais o gasto mensal em combustível e manutenção durante 120 meses. No lado solar, inclui-se a entrada e os pagamentos mensais até completar o pagamento do barco, e $0 depois.</p>
             <p>Total gasolina 10 anos = custo motor gasolina + (gasto mensal × 120)<br>Total solar 10 anos = entrada + (pagamento mensal × meses até pagar, máx 120)</p>
             <h3>Tempo para recuperar o investimento (ROI)</h3>
-            <p>O investimento líquido é a diferença entre o custo do sistema solar e o custo do motor a gasolina que ele substitui. O tempo de retorno é quantos anos de economia em combustível e manutenção são necessários para cobrir esse investimento líquido.</p>
-            <p>Investimento líquido = custo total sistema solar − custo motor gasolina<br>Economia anual = (gasto mensal combustível + manutenção) × 12<br>ROI = investimento líquido ÷ economia anual</p>
+            <p>O investimento líquido é a diferença entre o custo do sistema solar e o custo do motor a gasolina que ele substitui. O tempo de retorno é quantos anos de poupança em combustível e manutenção são necessários para cobrir esse investimento líquido.</p>
+            <p>Investimento líquido = custo total sistema solar − custo motor gasolina<br>Poupança anual = (gasto mensal combustível + manutenção) × 12<br>ROI = investimento líquido ÷ poupança anual</p>
             <h3>Exemplo</h3>
             <p>Uma família de Sharamentsa, Equador, navega 60 km/semana. Preço gasolina: $7,50/galão. Rendimento: 14 km/galão. Manutenção: $300/ano. Motor gasolina: $900. Sistema solar completo ($10.000). Entrada: $500. Pagamento mensal: $150. Sem juros, sem subsídio.</p>
             <table class="comparison-table" style="margin-top:1rem">
@@ -412,10 +415,10 @@ const translations = {
               <tbody>
                 <tr><td>Gasto mensal gasolina + manutenção</td><td>$168</td></tr>
                 <tr><td>Pagamento mensal pelo barco solar</td><td>$150</td></tr>
-                <tr><td>Economia mensal durante o pagamento</td><td>$18</td></tr>
+                <tr><td>Poupança mensal durante o pagamento</td><td>$18</td></tr>
                 <tr><td>Anos para terminar de pagar</td><td>5,1 anos</td></tr>
                 <tr><td>Investimento líquido (solar − motor gasolina)</td><td>$9.100</td></tr>
-                <tr><td>Economia anual (combustível + manutenção)</td><td>$2.016</td></tr>
+                <tr><td>Poupança anual (combustível + manutenção)</td><td>$2.016</td></tr>
                 <tr><td>Tempo para recuperar o investimento</td><td>4,5 anos</td></tr>
                 <tr><td>Poupança total em 10 anos</td><td>~$8.260</td></tr>
               </tbody>
@@ -449,7 +452,7 @@ const translations = {
         'page-aviso-content': `
             <h2>Aviso legal e isenção de responsabilidade</h2>
             <h3>Estimativas, não garantias</h3>
-            <p>Os resultados desta calculadora são estimativas baseadas nos dados inseridos e em premissas gerais. As economias reais, prazos de pagamento e tempos de recuperação do investimento podem variar conforme o uso real do barco, as flutuações no preço da gasolina, as condições de financiamento e outros fatores locais.</p>
+            <p>Os resultados desta calculadora são estimativas baseadas nos dados inseridos e em premissas gerais. As poupanças reais, prazos de pagamento e tempos de recuperação do investimento podem variar conforme o uso real do barco, as flutuações no preço da gasolina, as condições de financiamento e outros fatores locais.</p>
             <h3>Uso de dados</h3>
             <p>Ao usar esta ferramenta, você concorda que os dados inseridos sejam coletados pela Fundação Kara Solar com fins de pesquisa e planejamento, conforme o Protocolo de dados. Os dados não serão vendidos a terceiros.</p>
             <h3>Sem responsabilidade financeira</h3>
