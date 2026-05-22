@@ -63,7 +63,7 @@ function calculateResults() {
   const monthlyGallons = (kmWeek * 4.33) / kmPerGal;
   const fuelMonthly    = monthlyGallons * gasPrice;
   const repairMonthly  = repairsYear / 12;
-  const gasMonthly     = fuelMonthly + repairMonthly;
+  const gasMonthly     = Math.round(fuelMonthly + repairMonthly);
 
   const solarCost =
     electricPrice +
@@ -132,6 +132,22 @@ function calculateResults() {
 }
 
 calculateResults();
+
+function matchGasPayment() {
+  const kmWeek      = parseFloat(document.getElementById('km_week').value)       || 0;
+  const gasPrice    = parseFloat(document.getElementById('gas_price').value)      || 0;
+  const kmPerGal    = parseFloat(document.getElementById('km_per_gal').value)     || 14;
+  const repairsYear = parseFloat(document.getElementById('repair_cost_yr').value) || 0;
+
+  const gasMonthly = (kmWeek * 4.33) / kmPerGal * gasPrice + repairsYear / 12;
+
+  const slider  = document.getElementById('monthly_payment');
+  const clamped = Math.min(Math.max(Math.round(gasMonthly), parseInt(slider.min)), parseInt(slider.max));
+
+  slider.value = clamped;
+  document.getElementById('monthly_payment_label').innerText = '$' + clamped;
+  calculateResults();
+}
 
 // ── Navigation ──
 const menuPages = ['calculadora', 'supuestos', 'protocolo', 'aviso'];
