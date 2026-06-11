@@ -1,5 +1,6 @@
-let addPanels = true;
+let addPanels  = true;
 let addBattery = true;
+let addHull    = false;
 
 function goToStep(step) {
   document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
@@ -24,17 +25,22 @@ function toggleButtons(yesBtn, noBtn, value, type) {
 
   if (type === 'panel')   addPanels  = value;
   if (type === 'battery') addBattery = value;
+  if (type === 'hull')    addHull    = value;
 }
 
 const panelYes   = document.getElementById('panel-yes');
 const panelNo    = document.getElementById('panel-no');
 const batteryYes = document.getElementById('battery-yes');
 const batteryNo  = document.getElementById('battery-no');
+const hullYes    = document.getElementById('hull-yes');
+const hullNo     = document.getElementById('hull-no');
 
 panelYes.onclick   = () => { toggleButtons(panelYes,   panelNo,   true,  'panel');   calculateResults(); };
 panelNo.onclick    = () => { toggleButtons(panelYes,   panelNo,   false, 'panel');   calculateResults(); };
 batteryYes.onclick = () => { toggleButtons(batteryYes, batteryNo, true,  'battery'); calculateResults(); };
 batteryNo.onclick  = () => { toggleButtons(batteryYes, batteryNo, false, 'battery'); calculateResults(); };
+hullYes.onclick    = () => { toggleButtons(hullYes,    hullNo,    true,  'hull');    calculateResults(); };
+hullNo.onclick     = () => { toggleButtons(hullYes,    hullNo,    false, 'hull');    calculateResults(); };
 
 function formatMoney(value) {
   return 'US$' + Math.round(value).toLocaleString('en-US');
@@ -68,7 +74,8 @@ function calculateResults() {
   const solarCost =
     electricPrice +
     (addPanels  ? 1500 : 0) +
-    (addBattery ? 2500 : 0);
+    (addBattery ? 2500 : 0) +
+    (addHull    ? 2000 : 0);
 
   const financed = Math.max(0, solarCost - subsidy - downpayment);
 
@@ -111,9 +118,11 @@ function calculateResults() {
   document.getElementById('bd-motor').innerText   = formatMoney(electricPrice);
   document.getElementById('bd-panels').innerText  = formatMoney(1500);
   document.getElementById('bd-battery').innerText = formatMoney(2500);
+  document.getElementById('bd-hull').innerText    = formatMoney(2000);
   document.getElementById('bd-total').innerText   = formatMoney(solarCost);
   document.getElementById('bd-panels-row').style.display  = addPanels  ? '' : 'none';
   document.getElementById('bd-battery-row').style.display = addBattery ? '' : 'none';
+  document.getElementById('bd-hull-row').style.display    = addHull    ? '' : 'none';
 
   document.getElementById('sum-gas-monthly').innerText   = formatMoney(gasMonthly);
   document.getElementById('sum-solar-monthly').innerText = formatMoney(monthlyPayment);

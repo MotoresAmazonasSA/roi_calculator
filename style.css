@@ -671,6 +671,18 @@ small {
   text-decoration: underline;
 }
 
+.catalogue-link {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+.catalogue-link a {
+  color: var(--green-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+.catalogue-link a:hover { text-decoration: underline; }
+
 /* ── Info pages ── */
 .info-card {
   background: var(--card);

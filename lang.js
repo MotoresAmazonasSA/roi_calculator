@@ -2,7 +2,7 @@
     es: {
         'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
-        'hero-desc': 'Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar.',
+        'hero-desc': 'Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar <strong>fluvial en la Amazonia</strong>.',
 
         'nav-calculadora': 'Calculadora',
         'nav-supuestos': 'Supuestos',
@@ -30,14 +30,17 @@
         'btn-continue': 'Continuar →',
 
         'step2-title': 'Paso 2 de 3 — Configuración solar',
-        'step2-electric-label': 'Costo del sistema de transporte solar de Motores Amazonas (US$)',
-        'step2-electric-hint': 'Incluye motor eléctrico y batería. Cada batería permite recorrer unos 30 km por carga.',
+        'step2-electric-label': 'Costo del sistema de transporte solar de Kara Solar (US$)',
+        'step2-electric-hint': 'El sistema básico incluye un motor eléctrico y una batería y cuesta US$6.000. Cada batería permite recorrer unos 30 km por carga.',
         'step2-panels-label': '¿Se agregarán paneles solares para cargar el bote?',
         'step2-panels-hint': 'Los paneles cuestan US$1.500. Si se usará otra fuente de energía, deja en NO.',
         'btn-yes': 'Sí',
         'btn-no': 'No',
         'step2-battery-label': '¿Se agregará una segunda batería?',
         'step2-battery-hint': 'Una batería extra cuesta US$2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.',
+        'step2-hull-label': '¿Se añadirá un casco de fibra de vidrio?',
+        'step2-hull-hint': 'El costo de un casco de fibra de vidrio varía, pero el promedio en Ecuador es de US$2.000. Si ya cuenta con un casco de canoa de cola larga en buena condición, es probable que el motor eléctrico pueda instalarse en el casco existente.',
+        'step2-catalogue-link': 'Conoce más sobre los equipos de transporte solar de Kara Solar →',
         'step2-payment-title': 'PLAN DE PAGO',
         'step2-downpayment-label': 'Pago inicial (US$)',
         'step2-downpayment-hint': 'Mientras más se pague de entrada, menos se pagará después.',
@@ -59,9 +62,10 @@
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar seleccionado',
-        'bd-motor-label': 'Motor eléctrico + batería (Motores Amazonas)',
+        'bd-motor-label': 'Motor eléctrico + batería (Kara Solar)',
         'bd-panels-label': 'Paneles solares',
         'bd-battery-label': 'Segunda batería',
+        'bd-hull-label': 'Casco de fibra de vidrio',
         'bd-total-label': 'Costo total del sistema',
 
         'sum-text-1': 'Con los datos ingresados, se estima que cambiar a un bote solar permitiría pasar de gastar',
@@ -163,7 +167,7 @@
     en: {
         'page-title': 'Ríos Solares Calculator | Kara Solar',
         'hero-title': 'Ríos Solares Calculator',
-        'hero-desc': 'This tool allows you to compare costs, estimate savings, and evaluate the financial viability of switching from gasoline to solar transport.',
+        'hero-desc': 'This tool allows you to compare costs, estimate savings, and evaluate the financial viability of switching from gasoline to solar river transport <strong>in the Amazon</strong>.',
 
         'nav-calculadora': 'Calculator',
         'nav-supuestos': 'Assumptions',
@@ -191,14 +195,17 @@
         'btn-continue': 'Continue →',
 
         'step2-title': 'Step 2 of 3 — Solar Configuration',
-        'step2-electric-label': 'Cost of the Motores Amazonas solar transport system (US$)',
-        'step2-electric-hint': 'Includes electric motor and battery. Each battery allows travel of about 30 km per charge.',
+        'step2-electric-label': 'Cost of the Kara Solar solar transport system (US$)',
+        'step2-electric-hint': 'The basic system includes an electric motor and a battery and costs US$6,000. Each battery allows travel of about 30 km per charge.',
         'step2-panels-label': 'Will solar panels be added to charge the boat?',
         'step2-panels-hint': 'Panels cost US$1,500. If another energy source will be used, leave as NO.',
         'btn-yes': 'Yes',
         'btn-no': 'No',
         'step2-battery-label': 'Will a second battery be added?',
         'step2-battery-hint': 'An extra battery costs US$2,500 and allows greater travel time and distance, plus the ability to use one battery while the other charges.',
+        'step2-hull-label': 'Will a fiberglass hull be added?',
+        'step2-hull-hint': 'The cost of a fiberglass hull varies, but the average in Ecuador is US$2,000. If you already have a longboat canoe hull in good condition, the electric motor can likely be installed in the existing hull.',
+        'step2-catalogue-link': 'Learn more about Kara Solar\'s solar transport equipment →',
         'step2-payment-title': 'PAYMENT PLAN',
         'step2-downpayment-label': 'Down payment (US$)',
         'step2-downpayment-hint': 'The more you pay upfront, the less you pay later.',
@@ -220,9 +227,10 @@
 
         'results-title': 'Results',
         'bd-system-title': 'Selected solar system',
-        'bd-motor-label': 'Electric motor + battery (Motores Amazonas)',
+        'bd-motor-label': 'Electric motor + battery (Kara Solar)',
         'bd-panels-label': 'Solar panels',
         'bd-battery-label': 'Second battery',
+        'bd-hull-label': 'Fiberglass hull',
         'bd-total-label': 'Total system cost',
 
         'sum-text-1': 'Based on the data entered, it is estimated that switching to a solar boat would allow going from spending',
@@ -324,7 +332,7 @@
     pt: {
         'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
-        'hero-desc': 'Esta ferramenta permite comparar custos, estimar poupanças e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar.',
+        'hero-desc': 'Esta ferramenta permite comparar custos, estimar poupanças e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar <strong>fluvial na Amazônia</strong>.',
 
         'nav-calculadora': 'Calculadora',
         'nav-supuestos': 'Premissas',
@@ -352,14 +360,17 @@
         'btn-continue': 'Continuar →',
 
         'step2-title': 'Passo 2 de 3 — Configuração solar',
-        'step2-electric-label': 'Custo do sistema de transporte solar da Motores Amazonas (US$)',
-        'step2-electric-hint': 'Inclui motor elétrico e bateria. Cada bateria permite percorrer cerca de 30 km por carga.',
+        'step2-electric-label': 'Custo do sistema de transporte solar da Kara Solar (US$)',
+        'step2-electric-hint': 'O sistema básico inclui um motor elétrico e uma bateria e custa US$6.000. Cada bateria permite percorrer cerca de 30 km por carga.',
         'step2-panels-label': 'Serão adicionados painéis solares para carregar o barco?',
         'step2-panels-hint': 'Os painéis custam US$1.500. Se outra fonte de energia for utilizada, deixe em NÃO.',
         'btn-yes': 'Sim',
         'btn-no': 'Não',
         'step2-battery-label': 'Será adicionada uma segunda bateria?',
         'step2-battery-hint': 'Uma bateria extra custa US$2.500 e permite maior tempo e distância de viagem, além de usar uma bateria enquanto a outra carrega.',
+        'step2-hull-label': 'Será adicionado um casco de fibra de vidro?',
+        'step2-hull-hint': 'O custo de um casco de fibra de vidro varia, mas a média no Equador é de US$2.000. Se você já possui um casco de canoa de rabeta em boas condições, provavelmente o motor elétrico poderá ser instalado no casco existente.',
+        'step2-catalogue-link': 'Saiba mais sobre os equipamentos de transporte solar da Kara Solar →',
         'step2-payment-title': 'PLANO DE PAGAMENTO',
         'step2-downpayment-label': 'Entrada (US$)',
         'step2-downpayment-hint': 'Quanto mais se pagar de entrada, menos se pagará depois.',
@@ -381,9 +392,10 @@
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar selecionado',
-        'bd-motor-label': 'Motor elétrico + bateria (Motores Amazonas)',
+        'bd-motor-label': 'Motor elétrico + bateria (Kara Solar)',
         'bd-panels-label': 'Painéis solares',
         'bd-battery-label': 'Segunda bateria',
+        'bd-hull-label': 'Casco de fibra de vidro',
         'bd-total-label': 'Custo total do sistema',
 
         'sum-text-1': 'Com os dados inseridos, estima-se que mudar para um barco solar permitiria passar de gastar',

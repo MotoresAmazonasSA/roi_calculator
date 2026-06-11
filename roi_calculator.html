@@ -49,8 +49,7 @@
       <div class="hero">
         <h1 data-il8n="hero-title">Calculadora Ríos Solares</h1>
         <p data-il8n="hero-desc">
-          Esta herramienta permite comparar costos, estimar ahorros y evaluar la
-          viabilidad financiera de cambiar de gasolina a transporte solar.
+          Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar <strong>fluvial en la Amazonia</strong>.
         </p>
       </div>
 
@@ -120,9 +119,9 @@
           <div class="section-title" data-il8n="step2-title">Paso 2 de 3 — Configuración solar</div>
 
           <label data-il8n="step2-electric-label">
-            Costo del sistema de transporte solar de Motores Amazonas ($)
+            Costo del sistema de transporte solar de Kara Solar (US$)
           </label>
-          <small data-il8n="step2-electric-hint">Incluye motor eléctrico y batería. Cada batería permite recorrer unos 30 km por carga.</small>
+          <small data-il8n="step2-electric-hint">El sistema básico incluye un motor eléctrico y una batería y cuesta US$6.000. Cada batería permite recorrer unos 30 km por carga.</small>
 
           <input id="electric_price" type="number" class="form-control" value="6000">
 
@@ -140,6 +139,17 @@
             <button class="toggle-btn active" id="battery-yes" data-il8n="btn-yes">Sí</button>
             <button class="toggle-btn" id="battery-no" data-il8n="btn-no">No</button>
           </div>
+
+          <label data-il8n="step2-hull-label">¿Se añadirá un casco de fibra de vidrio?</label>
+          <small data-il8n="step2-hull-hint">El costo de un casco de fibra de vidrio varía, pero el promedio en Ecuador es de US$2.000. Si ya cuenta con un casco de canoa de cola larga en buena condición, es probable que el motor eléctrico pueda instalarse en el casco existente.</small>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="hull-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="hull-no" data-il8n="btn-no">No</button>
+          </div>
+
+          <!-- NOTE: HREF TO CATALOGUE PENDING -->
+          <p class="catalogue-link"><a href="#" data-il8n="step2-catalogue-link">Conoce más sobre los equipos de transporte solar de Kara Solar →</a></p>
+
         </div>
 
         <div class="section-card">
@@ -236,7 +246,7 @@
           <div class="breakdown-card">
             <h3 data-il8n="bd-system-title">Sistema solar seleccionado</h3>
             <div class="breakdown-row">
-              <span data-il8n="bd-motor-label">Motor eléctrico + batería (Motores Amazonas)</span>
+              <span data-il8n="bd-motor-label">Motor eléctrico + batería (Kara Solar)</span>
               <span id="bd-motor">US$6.000</span>
             </div>
             <div class="breakdown-row" id="bd-panels-row">
@@ -246,6 +256,10 @@
             <div class="breakdown-row" id="bd-battery-row">
               <span data-il8n="bd-battery-label">Segunda batería</span>
               <span id="bd-battery">US$2.500</span>
+            </div>
+            <div class="breakdown-row" id="bd-hull-row" style="display:none">
+              <span data-il8n="bd-hull-label">Casco de fibra de vidrio</span>
+              <span id="bd-hull">US$2.000</span>
             </div>
             <div class="breakdown-row">
               <span data-il8n="bd-total-label">Costo total del sistema</span>
