@@ -37,13 +37,13 @@ batteryYes.onclick = () => { toggleButtons(batteryYes, batteryNo, true,  'batter
 batteryNo.onclick  = () => { toggleButtons(batteryYes, batteryNo, false, 'battery'); calculateResults(); };
 
 function formatMoney(value) {
-  return '$' + Math.round(value).toLocaleString('en-US');
+  return 'US$' + Math.round(value).toLocaleString('en-US');
 }
 
 const monthlySlider = document.getElementById('monthly_payment');
 
 monthlySlider.addEventListener('input', () => {
-  document.getElementById('monthly_payment_label').innerText = '$' + monthlySlider.value;
+  document.getElementById('monthly_payment_label').innerText = 'US$' + monthlySlider.value;
 });
 
 function calculateResults() {
@@ -73,17 +73,17 @@ function calculateResults() {
   const financed = Math.max(0, solarCost - subsidy - downpayment);
 
   let months;
+  let rawMonths;
   if (interest > 0) {
     const r = interest / 100 / 12;
-    months = Math.ceil(
-      -Math.log(1 - financed * r / monthlyPayment) /
-      Math.log(1 + r)
-    );
+    rawMonths = -Math.log(1 - financed * r / monthlyPayment) / Math.log(1 + r);
+    months = Math.ceil(rawMonths);
   } else {
-    months = financed / monthlyPayment;
+    rawMonths = financed / monthlyPayment;
+    months = rawMonths;
   }
 
-  const years = months / 12;
+  const years = rawMonths / 12;
 
   const gas10y   = gasEngine + gasMonthly * 120;
   const solar10y = downpayment + monthlyPayment * Math.min(months, 120);
@@ -145,7 +145,7 @@ function matchGasPayment() {
   const clamped = Math.min(Math.max(Math.round(gasMonthly), parseInt(slider.min)), parseInt(slider.max));
 
   slider.value = clamped;
-  document.getElementById('monthly_payment_label').innerText = '$' + clamped;
+  document.getElementById('monthly_payment_label').innerText = 'US$' + clamped;
   calculateResults();
 }
 
