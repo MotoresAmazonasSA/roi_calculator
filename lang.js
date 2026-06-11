@@ -54,6 +54,7 @@
 
         'step3-title': 'Paso 3 de 3 — Resultados',
         'step3-monthly-label': 'Pago mensual',
+        'step3-monthly-hint': 'Ajuste el pago mensual para ver los resultados actualizados. También puede igualarlo a lo que gasta actualmente en gasolina.',
         'step3-monthly-prefix': 'Pago mensual estimado:',
         'btn-download': 'Descargar Catálogo',
 
@@ -71,11 +72,11 @@
         'sum-text-1': 'Con los datos ingresados, se estima que cambiar a un bote solar permitiría pasar de gastar',
         'sum-text-2': 'al mes en gasolina y mantenimiento a pagar',
         'sum-text-3': 'al mes por el bote solar —',
-        'sum-text-4': 'cada mes. El bote estaría pagado en',
+        'sum-text-4': ' El bote estaría pagado en',
         'sum-text-5': ', y en 10 años el ahorro total sería de',
-        'sum-diff-more': 'pagando <strong>{amount}</strong> más',
-        'sum-diff-less': 'ahorrando <strong>{amount}</strong>',
-        'sum-diff-same': 'pagando prácticamente lo mismo',
+        'sum-diff-more': 'pagando <strong>{amount}</strong> más cada mes, hasta que termines de pagar.',
+        'sum-diff-less': 'ahorrando <strong>{amount}</strong> cada mes.',
+        'sum-diff-same': 'pagando prácticamente lo mismo cada mes.',
 
         'comparison-title': 'Comparación de Ahorro a Largo Plazo',
         'col-concept': 'Concepto',
@@ -219,6 +220,7 @@
 
         'step3-title': 'Step 3 of 3 — Results',
         'step3-monthly-label': 'Monthly payment',
+        'step3-monthly-hint': 'Adjust the monthly payment to see updated results. You can also match it to your current monthly gasoline spending.',
         'step3-monthly-prefix': 'Estimated monthly payment:',
         'btn-download': 'Download Catalog',
 
@@ -236,11 +238,11 @@
         'sum-text-1': 'Based on the data entered, it is estimated that switching to a solar boat would allow going from spending',
         'sum-text-2': 'per month on gasoline and maintenance to paying',
         'sum-text-3': 'per month for the solar boat —',
-        'sum-text-4': 'each month. The boat would be paid off in',
+        'sum-text-4': ' The boat would be paid off in',
         'sum-text-5': ', and in 10 years the total savings would be',
-        'sum-diff-more': 'paying <strong>{amount}</strong> more',
-        'sum-diff-less': 'saving <strong>{amount}</strong>',
-        'sum-diff-same': 'paying practically the same',
+        'sum-diff-more': 'paying <strong>{amount}</strong> more each month, until you finish paying.',
+        'sum-diff-less': 'saving <strong>{amount}</strong> each month.',
+        'sum-diff-same': 'paying practically the same each month.',
 
         'comparison-title': 'Long-Term Savings Comparison',
         'col-concept': 'Item',
@@ -384,6 +386,7 @@
 
         'step3-title': 'Passo 3 de 3 — Resultados',
         'step3-monthly-label': 'Pagamento mensal',
+        'step3-monthly-hint': 'Ajuste o pagamento mensal para ver os resultados atualizados. Você também pode igualá-lo ao que gasta atualmente em gasolina.',
         'step3-monthly-prefix': 'Pagamento mensal estimado:',
         'btn-download': 'Baixar Catálogo',
 
@@ -401,11 +404,11 @@
         'sum-text-1': 'Com os dados inseridos, estima-se que mudar para um barco solar permitiria passar de gastar',
         'sum-text-2': 'por mês em gasolina e manutenção para pagar',
         'sum-text-3': 'por mês pelo barco solar —',
-        'sum-text-4': 'a cada mês. O barco estaria pago em',
+        'sum-text-4': ' O barco estaria pago em',
         'sum-text-5': ', e em 10 anos a poupança total seria de',
-        'sum-diff-more': 'pagando <strong>{amount}</strong> a mais',
-        'sum-diff-less': 'poupando <strong>{amount}</strong>',
-        'sum-diff-same': 'pagando praticamente o mesmo',
+        'sum-diff-more': 'pagando <strong>{amount}</strong> a mais a cada mês, até terminar de pagar.',
+        'sum-diff-less': 'poupando <strong>{amount}</strong> a cada mês.',
+        'sum-diff-same': 'pagando praticamente o mesmo a cada mês.',
 
         'comparison-title': 'Comparação de Poupança a Longo Prazo',
         'col-concept': 'Item',
