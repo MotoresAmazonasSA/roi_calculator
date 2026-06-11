@@ -551,7 +551,11 @@ small {
   transition: transform 0.25s ease;
   padding: 2rem 1.5rem;
   box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
 }
+
+.side-menu nav { flex: 1; }
 
 .side-menu.open { transform: translateX(0); }
 
@@ -589,6 +593,28 @@ small {
 
 .side-menu nav a:hover { background: #f0faf5; color: var(--green-dark); }
 .side-menu nav a.active { background: #e6f7f0; color: var(--green-dark); }
+
+.side-menu-footer {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.side-menu-footer-logo {
+  width: 120px;
+  display: block;
+  margin-bottom: 0.65rem;
+}
+.side-menu-tagline {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+.side-menu-tagline a {
+  color: var(--green-dark);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
 /* ── Menu pages ── */
 .menu-page { display: none; }

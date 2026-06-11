@@ -1,6 +1,6 @@
 ﻿const translations = {
     es: {
-        'page-title': 'Calculadora Ríos Solares',
+        'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
         'hero-desc': 'Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar.',
 
@@ -84,6 +84,7 @@
         'metric-payoff': 'Años para terminar de pagar',
         'metric-roi': 'Tiempo para recuperar la inversión',
         'unit-years': 'años',
+        'side-tagline': 'Construyendo un ecosistema unificado para el transporte fluvial solar en la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a>',
 
         'page-supuestos-content': `
             <h2>¿Cómo funciona esta calculadora?</h2>
@@ -155,7 +156,7 @@
     },
 
     en: {
-        'page-title': 'Ríos Solares Calculator',
+        'page-title': 'Ríos Solares Calculator | Kara Solar',
         'hero-title': 'Ríos Solares Calculator',
         'hero-desc': 'This tool allows you to compare costs, estimate savings, and evaluate the financial viability of switching from gasoline to solar transport.',
 
@@ -239,6 +240,7 @@
         'metric-payoff': 'Years to finish paying',
         'metric-roi': 'Time to recover investment',
         'unit-years': 'years',
+        'side-tagline': 'Building a unified ecosystem for solar river transport in the Amazon. <a href="https://karasolar.com/" target="_blank">Learn more →</a>',
 
         'page-supuestos-content': `
             <h2>How does this calculator work?</h2>
@@ -310,7 +312,7 @@
     },
 
     pt: {
-        'page-title': 'Calculadora Ríos Solares',
+        'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
         'hero-desc': 'Esta ferramenta permite comparar custos, estimar poupanças e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar.',
 
@@ -394,6 +396,7 @@
         'metric-payoff': 'Anos para terminar de pagar',
         'metric-roi': 'Tempo para recuperar o investimento',
         'unit-years': 'anos',
+        'side-tagline': 'Construindo um ecossistema unificado para o transporte fluvial solar na Amazônia. <a href="https://karasolar.com/" target="_blank">Saiba mais →</a>',
 
         'page-supuestos-content': `
             <h2>Como funciona esta calculadora?</h2>
