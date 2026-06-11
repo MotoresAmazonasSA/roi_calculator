@@ -620,6 +620,57 @@ small {
 .menu-page { display: none; }
 .menu-page.active { display: block; }
 
+/* ── Site footer ── */
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 1.5rem 2.5rem;
+  border-top: 2px solid var(--border);
+  background: #f8fdfb;
+  border-radius: 16px 16px 0 0;
+}
+.site-footer-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.site-footer-desc {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.site-footer-desc a,
+.site-footer-cta a {
+  color: var(--green-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+.site-footer-desc a:hover,
+.site-footer-cta a:hover { text-decoration: underline; }
+.site-footer-cta {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.site-footer-credits {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.site-footer-credits a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
 /* ── Info pages ── */
 .info-card {
   background: var(--card);

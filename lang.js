@@ -86,6 +86,11 @@
         'unit-years': 'años',
         'side-tagline': 'Construyendo un ecosistema unificado para el transporte fluvial solar en la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a>',
 
+        'footer-title': 'Sobre Kara Solar',
+        'footer-desc': '"Kara" significa "un sueño que se hace realidad" en achuar. Nuestro sueño es una Amazonía solar. Estamos haciendo realidad ese sueño construyendo un ecosistema unificado que integra tecnología limpia, gobernanza comunitaria y financiamiento sostenible para escalar la movilidad fluvial solar desde el territorio achuar hacia toda la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a>',
+        'footer-cta': '¿Listo para hacer la transición al transporte fluvial solar? Escríbenos a <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
+        'footer-credits': 'Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Borja Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a>',
+
         'page-supuestos-content': `
             <h2>¿Cómo funciona esta calculadora?</h2>
             <p>Esta herramienta estima el costo total del transporte a gasolina, lo compara con el costo de un sistema solar de Motores Amazonas, y calcula cuánto tiempo tomaría pagar el bote y recuperar la inversión. Los resultados son estimaciones y pueden variar según el uso real y las condiciones locales.</p>
@@ -242,6 +247,11 @@
         'unit-years': 'years',
         'side-tagline': 'Building a unified ecosystem for solar river transport in the Amazon. <a href="https://karasolar.com/" target="_blank">Learn more →</a>',
 
+        'footer-title': 'About Kara Solar',
+        'footer-desc': '"Kara" means "a dream that becomes reality" in Achuar. Our dream is a solar Amazon. We are making that dream a reality by building a unified ecosystem that integrates clean technology, community governance, and sustainable financing to scale solar river mobility from Achuar territory across the entire Amazon. <a href="https://karasolar.com/" target="_blank">Learn more →</a>',
+        'footer-cta': 'Ready to make the transition to solar river transport? Write to us at <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
+        'footer-credits': 'This calculator was created by Leif Maynard, Daniel Enriquez, and Daniela Borja Kaisin. For questions about the calculator, <a href="mailto:hola@karasolar.com">contact us →</a>',
+
         'page-supuestos-content': `
             <h2>How does this calculator work?</h2>
             <p>This tool estimates the total cost of gasoline transport, compares it with the cost of a Motores Amazonas solar system, and calculates how long it would take to pay off the boat and recover the investment. Results are estimates and may vary depending on actual use and local conditions.</p>
@@ -397,6 +407,11 @@
         'metric-roi': 'Tempo para recuperar o investimento',
         'unit-years': 'anos',
         'side-tagline': 'Construindo um ecossistema unificado para o transporte fluvial solar na Amazônia. <a href="https://karasolar.com/" target="_blank">Saiba mais →</a>',
+
+        'footer-title': 'Sobre a Kara Solar',
+        'footer-desc': '"Kara" significa "um sonho que se torna realidade" em achuar. Nosso sonho é uma Amazônia solar. Estamos tornando esse sonho realidade construindo um ecossistema unificado que integra tecnologia limpa, governança comunitária e financiamento sustentável para escalar a mobilidade fluvial solar desde o território achuar até toda a Amazônia. <a href="https://karasolar.com/" target="_blank">Saiba mais →</a>',
+        'footer-cta': 'Pronto para fazer a transição para o transporte fluvial solar? Escreva-nos em <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
+        'footer-credits': 'Esta calculadora foi criada por Leif Maynard, Daniel Enriquez e Daniela Borja Kaisin. Para dúvidas sobre a calculadora, <a href="mailto:hola@karasolar.com">entre em contato →</a>',
 
         'page-supuestos-content': `
             <h2>Como funciona esta calculadora?</h2>
