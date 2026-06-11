@@ -160,6 +160,11 @@ function matchGasPayment() {
 
 // ── Download results as PDF ──
 function downloadResults() {
+  if (!window.jspdf) {
+    alert('PDF library not loaded. Please check your internet connection and try again.');
+    return;
+  }
+
   const lang = currentLang || 'es';
   const L = {
     es: {
@@ -172,9 +177,11 @@ function downloadResults() {
       upfront:    'Costo inicial', monthly: 'Costo mensual', tenyear: 'Total a 10 años',
       savingsRow: 'Ahorro total (10 años)', gas: 'Gasolina', solar: 'Solar',
       metrics:    'Indicadores clave',
-      payoffLbl:  'Años para terminar de pagar', roiLbl: 'Tiempo para recuperar la inversión',
+      payoffLbl:  'Años para terminar de pagar',
+      roiLbl:     'Tiempo para recuperar la inversión',
       nextsteps:  'Próximos pasos',
       catLink:    'Ver catálogo de equipos', contactLink: 'Consultas y compras',
+      disclaimer: 'Resultados estimados. Kara Solar no se hace responsable por decisiones financieras basadas en esta herramienta.',
     },
     en: {
       title:      'Ríos Solares Calculator | Kara Solar',
@@ -186,9 +193,11 @@ function downloadResults() {
       upfront:    'Initial cost', monthly: 'Monthly cost', tenyear: 'Total over 10 years',
       savingsRow: 'Total savings (10 years)', gas: 'Gasoline', solar: 'Solar',
       metrics:    'Key metrics',
-      payoffLbl:  'Years to finish paying', roiLbl: 'Time to recover investment',
+      payoffLbl:  'Years to finish paying',
+      roiLbl:     'Time to recover investment',
       nextsteps:  'Next steps',
       catLink:    'View equipment catalog', contactLink: 'Purchases and inquiries',
+      disclaimer: 'Estimated results. Kara Solar is not responsible for financial decisions based on this tool.',
     },
     pt: {
       title:      'Calculadora Ríos Solares | Kara Solar',
@@ -200,66 +209,163 @@ function downloadResults() {
       upfront:    'Custo inicial', monthly: 'Custo mensal', tenyear: 'Total em 10 anos',
       savingsRow: 'Poupança total (10 anos)', gas: 'Gasolina', solar: 'Solar',
       metrics:    'Indicadores-chave',
-      payoffLbl:  'Anos para terminar de pagar', roiLbl: 'Tempo para recuperar o investimento',
+      payoffLbl:  'Anos para terminar de pagar',
+      roiLbl:     'Tempo para recuperar o investimento',
       nextsteps:  'Próximos passos',
       catLink:    'Ver catálogo de equipamentos', contactLink: 'Compras e consultas',
-    }
+      disclaimer: 'Resultados estimados. Kara Solar não se responsabiliza por decisões financeiras baseadas nesta ferramenta.',
+    },
   }[lang] || {};
 
-  const g  = id => document.getElementById(id)?.innerText || '';
+  const g   = id => document.getElementById(id)?.innerText || '—';
   const vis = id => document.getElementById(id)?.style.display !== 'none';
 
-  const html = `<!DOCTYPE html><html lang="${lang}"><head><meta charset="UTF-8">
-<title>${L.title}</title>
-<style>
-  *{box-sizing:border-box}body{font-family:Arial,sans-serif;max-width:680px;margin:2rem auto;padding:0 1rem;color:#1a1a1a;font-size:14px}
-  h1{color:#1a7a4a;font-size:1.2rem;margin-bottom:.2rem}.sub{color:#666;font-size:.82rem;margin-bottom:1.5rem}
-  h2{color:#1a7a4a;font-size:.95rem;border-bottom:2px solid #e0f2e9;padding-bottom:.3rem;margin-top:1.4rem}
-  table{width:100%;border-collapse:collapse;margin-top:.4rem;font-size:.87rem}
-  td,th{padding:.4rem .7rem;border:1px solid #ddd}th{background:#f0faf5;font-weight:600}
-  .metrics{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.6rem}
-  .metric{flex:1;min-width:140px;background:#f0faf5;border:1px solid #c5e8d5;border-radius:8px;padding:.7rem 1rem}
-  .mlbl{font-size:.76rem;color:#555}.mval{font-size:1.5rem;font-weight:700;color:#1a7a4a}
-  .nxt{margin-top:1.5rem;background:#f8fdfb;border:1px solid #c5e8d5;border-radius:10px;padding:1rem 1.2rem}
-  .nxt h2{margin-top:0}.nxt p{margin:.25rem 0 .6rem}a{color:#1a7a4a}
-  @media print{body{margin:.5rem}}
-</style></head><body>
-<h1>${L.title}</h1>
-<div class="sub"><a href="https://karasolar.com/">karasolar.com</a> · <a href="mailto:hola@karasolar.com">hola@karasolar.com</a></div>
-<h2>${L.system}</h2>
-<table>
-  <tr><td>${L.motor}</td><td><strong>${g('bd-motor')}</strong></td></tr>
-  ${vis('bd-panels-row')  ? `<tr><td>${L.panels}</td><td>${g('bd-panels')}</td></tr>` : ''}
-  ${vis('bd-battery-row') ? `<tr><td>${L.battery}</td><td>${g('bd-battery')}</td></tr>` : ''}
-  ${vis('bd-hull-row')    ? `<tr><td>${L.hull}</td><td>${g('bd-hull')}</td></tr>` : ''}
-  <tr><th>${L.total}</th><th>${g('bd-total')}</th></tr>
-</table>
-<h2>${L.comparison}</h2>
-<table>
-  <tr><th></th><th>${L.gas}</th><th>${L.solar}</th></tr>
-  <tr><td>${L.upfront}</td><td>${g('gas-upfront')}</td><td>${g('solar-upfront')}</td></tr>
-  <tr><td>${L.monthly}</td><td>${g('gas-monthly')}</td><td>${g('solar-monthly')}</td></tr>
-  <tr><td>${L.tenyear}</td><td>${g('gas-10y')}</td><td>${g('solar-10y')}</td></tr>
-  <tr><th>${L.savingsRow}</th><th>—</th><th><strong>${g('savings-total')}</strong></th></tr>
-</table>
-<h2>${L.metrics}</h2>
-<div class="metrics">
-  <div class="metric"><div class="mlbl">${L.payoffLbl}</div><div class="mval">${g('payoff-years')}</div></div>
-  <div class="metric"><div class="mlbl">${L.roiLbl}</div><div class="mval">${g('roi-years')}</div></div>
-</div>
-<div class="nxt">
-  <h2>${L.nextsteps}</h2>
-  <p>${L.catLink}: <a href="catalogo_ma_2026.pdf">catalogo_ma_2026.pdf</a></p>
-  <p>${L.contactLink}: <a href="mailto:hola@karasolar.com">hola@karasolar.com</a></p>
-  <p>Kara Solar: <a href="https://karasolar.com/">karasolar.com</a></p>
-</div>
-</body></html>`;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
 
-  const w = window.open('', '_blank');
-  w.document.write(html);
-  w.document.close();
-  w.focus();
-  setTimeout(() => w.print(), 400);
+  const GREEN    = [23, 138, 104];
+  const GRN_DRK  = [15, 95, 72];
+  const GRN_BG   = [240, 250, 245];
+  const GRN_BDR  = [197, 232, 213];
+  const MUTED    = [102, 102, 102];
+  const ML = 20;
+  const W  = 170;
+
+  let y = 22;
+
+  // Title
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GREEN);
+  doc.text(L.title, ML, y);
+  y += 7;
+
+  // Contact line
+  doc.setFontSize(8.5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(...MUTED);
+  const site = 'karasolar.com';
+  const mail = 'hola@karasolar.com';
+  const sep  = '   ·   ';
+  doc.textWithLink(site, ML, y, { url: 'https://karasolar.com/' });
+  doc.text(sep, ML + doc.getTextWidth(site), y);
+  doc.textWithLink(mail, ML + doc.getTextWidth(site + sep), y, { url: 'mailto:hola@karasolar.com' });
+  y += 9;
+
+  // System configuration table
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GREEN);
+  doc.text(L.system, ML, y);
+  y += 3;
+
+  const sysRows = [[L.motor, g('bd-motor')]];
+  if (vis('bd-panels-row'))  sysRows.push([L.panels,  g('bd-panels')]);
+  if (vis('bd-battery-row')) sysRows.push([L.battery, g('bd-battery')]);
+  if (vis('bd-hull-row'))    sysRows.push([L.hull,    g('bd-hull')]);
+
+  doc.autoTable({
+    body: sysRows,
+    foot: [[
+      { content: L.total,       styles: { fontStyle: 'bold', textColor: GRN_DRK } },
+      { content: g('bd-total'), styles: { fontStyle: 'bold', textColor: GRN_DRK, halign: 'right' } },
+    ]],
+    startY: y,
+    margin: { left: ML, right: ML },
+    styles: { fontSize: 9, cellPadding: [2.5, 4] },
+    footStyles: { fillColor: GRN_BG },
+    columnStyles: { 1: { halign: 'right' } },
+    theme: 'grid',
+  });
+  y = doc.lastAutoTable.finalY + 8;
+
+  // Cost comparison table
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GREEN);
+  doc.text(L.comparison, ML, y);
+  y += 3;
+
+  doc.autoTable({
+    head: [['', L.gas, L.solar]],
+    body: [
+      [L.upfront, g('gas-upfront'),  g('solar-upfront')],
+      [L.monthly, g('gas-monthly'),  g('solar-monthly')],
+      [L.tenyear, g('gas-10y'),      g('solar-10y')],
+    ],
+    foot: [[
+      { content: L.savingsRow,        styles: { fontStyle: 'bold', textColor: GRN_DRK } },
+      { content: '—',                 styles: { halign: 'center' } },
+      { content: g('savings-total'),  styles: { fontStyle: 'bold', textColor: GRN_DRK, halign: 'right' } },
+    ]],
+    startY: y,
+    margin: { left: ML, right: ML },
+    styles: { fontSize: 9, cellPadding: [2.5, 4] },
+    headStyles: { fillColor: GRN_BG, textColor: GRN_DRK, fontStyle: 'bold' },
+    footStyles: { fillColor: GRN_BG },
+    columnStyles: { 1: { halign: 'right' }, 2: { halign: 'right' } },
+    theme: 'grid',
+  });
+  y = doc.lastAutoTable.finalY + 8;
+
+  // Key metrics — two side-by-side boxes
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GREEN);
+  doc.text(L.metrics, ML, y);
+  y += 4;
+
+  const boxW = (W - 6) / 2;
+  [[L.payoffLbl, g('payoff-years'), ML], [L.roiLbl, g('roi-years'), ML + boxW + 6]].forEach(([lbl, val, bx]) => {
+    doc.setFillColor(...GRN_BG);
+    doc.setDrawColor(...GRN_BDR);
+    doc.roundedRect(bx, y, boxW, 22, 2, 2, 'FD');
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...MUTED);
+    doc.text(doc.splitTextToSize(lbl, boxW - 6), bx + 3, y + 6);
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...GREEN);
+    doc.text(val, bx + 3, y + 18);
+  });
+  y += 30;
+
+  // Next steps box
+  const nxtH = 40;
+  doc.setFillColor(248, 253, 251);
+  doc.setDrawColor(...GRN_BDR);
+  doc.roundedRect(ML, y, W, nxtH, 3, 3, 'FD');
+  doc.setFontSize(10.5);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GREEN);
+  doc.text(L.nextsteps, ML + 4, y + 9);
+
+  const links = [
+    [L.catLink,     'catalogo_ma_2026.pdf',   'catalogo_ma_2026.pdf'],
+    [L.contactLink, mail,                      'mailto:' + mail],
+    ['Kara Solar',  site,                      'https://karasolar.com/'],
+  ];
+  let ly = y + 18;
+  links.forEach(([label, display, href]) => {
+    doc.setFontSize(8.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...MUTED);
+    const labelStr = label + ':  ';
+    doc.text(labelStr, ML + 4, ly);
+    doc.setTextColor(...GREEN);
+    doc.textWithLink(display, ML + 4 + doc.getTextWidth(labelStr), ly, { url: href });
+    ly += 7;
+  });
+  y += nxtH + 6;
+
+  // Disclaimer
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'italic');
+  doc.setTextColor(...MUTED);
+  doc.text(doc.splitTextToSize(L.disclaimer, W), ML, y);
+
+  doc.save(lang === 'en' ? 'results-rios-solares.pdf' : 'resultados-rios-solares.pdf');
 }
 
 // ── Tooltip toggle (for mobile / click) ──
