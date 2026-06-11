@@ -98,11 +98,11 @@
 
         'page-supuestos-content': `
             <h2>¿Cómo funciona esta calculadora?</h2>
-            <p>Esta herramienta estima el costo total del transporte a gasolina, lo compara con el costo de un sistema solar de Motores Amazonas, y calcula cuánto tiempo tomaría pagar el bote y recuperar la inversión. Los resultados son estimaciones y pueden variar según el uso real y las condiciones locales.</p>
+            <p>Esta herramienta estima el costo total del transporte a gasolina, lo compara con el costo de un sistema de transporte solar de Kara Solar, y calcula cuánto tiempo tomaría pagar el bote y recuperar la inversión. Los resultados son estimaciones y pueden variar según el uso real y las condiciones locales.</p>
             <h3>Supuestos principales</h3>
             <h3>Costo mensual en gasolina y mantenimiento</h3>
             <p>Galones/mes = (km/semana × 4.33) ÷ km/galón<br>Combustible/mes = galones/mes × precio/galón<br>Total mensual = combustible/mes + (mantenimiento anual ÷ 12)</p>
-            <h3>Costo total del sistema solar</h3>
+            <h3>Costo total del sistema de transporte solar</h3>
             <p>Costo total = motor + paneles (US$1.500 si aplica) + batería extra (US$2.500 si aplica)<br>Monto a financiar = costo total − subsidio − pago inicial</p>
             <h3>Años para terminar de pagar el bote</h3>
             <p>Sin interés: meses = monto financiado ÷ pago mensual → años = meses ÷ 12<br>Con interés: fórmula estándar de amortización</p>
@@ -110,10 +110,10 @@
             <p>En el lado de gasolina se incluye el costo inicial del motor más el gasto mensual en combustible y mantenimiento durante 120 meses. En el lado solar, se incluye el pago inicial y los pagos mensuales hasta completar el pago del bote, y US$0 después.</p>
             <p>Total gasolina 10 años = costo motor gasolina + (gasto mensual × 120)<br>Total solar 10 años = pago inicial + (pago mensual × meses hasta pagar, máx 120)</p>
             <h3>Tiempo para recuperar la inversión (ROI)</h3>
-            <p>La inversión neta es la diferencia entre el costo del sistema solar y el costo del motor de gasolina que se reemplaza. El tiempo de recuperación es cuántos años de ahorro en combustible y mantenimiento se necesitan para cubrir esa inversión neta.</p>
-            <p>Inversión neta = costo total sistema solar − costo motor gasolina<br>Ahorro anual = (gasto mensual combustible + mantenimiento) × 12<br>ROI = inversión neta ÷ ahorro anual</p>
+            <p>La inversión neta es la diferencia entre el costo del sistema de transporte solar y el costo del motor de gasolina que se reemplaza. El tiempo de recuperación es cuántos años de ahorro en combustible y mantenimiento se necesitan para cubrir esa inversión neta.</p>
+            <p>Inversión neta = costo total sistema de transporte solar − costo motor gasolina<br>Ahorro anual = (gasto mensual combustible + mantenimiento) × 12<br>ROI = inversión neta ÷ ahorro anual</p>
             <h3>Ejemplo</h3>
-            <p>Una familia de Sharamentsa, Ecuador, navega 60 km/semana. Precio gasolina: US$7.50/galón. Rendimiento: 14 km/galón. Mantenimiento: US$300/año. Motor gasolina: US$900. Sistema solar completo (US$10.000). Pago inicial: US$500. Pago mensual: US$150. Sin interés, sin subsidio.</p>
+            <p>Una familia de Sharamentsa, Ecuador, navega 60 km/semana. Precio gasolina: US$7.50/galón. Rendimiento: 14 km/galón. Mantenimiento: US$300/año. Motor gasolina: US$900. Sistema de transporte solar completo (US$10.000). Pago inicial: US$500. Pago mensual: US$150. Sin interés, sin subsidio.</p>
             <table class="comparison-table" style="margin-top:1rem">
               <thead><tr><th>Resultado estimado</th><th>Valor</th></tr></thead>
               <tbody>
@@ -130,7 +130,7 @@
 
         'page-protocolo-content': `
             <h2>Protocolo de recopilación de datos</h2>
-            <p>La Calculadora Ríos Solares recopila datos con el objetivo de mejorar la planificación del transporte solar en la Amazonía y apoyar la misión de Fundación Kara Solar.</p>
+            <p>La Calculadora Ríos Solares recopila datos con el objetivo de mejorar la planificación del transporte solar en la Amazonía y apoyar la misión de Kara Solar.</p>
             <h3>¿Qué datos se recopilan?</h3>
             <ul>
               <li>Ubicación (comunidad y país)</li>
@@ -139,11 +139,12 @@
               <li>Rendimiento del motor (km/galón)</li>
               <li>Costo del motor de gasolina en la zona</li>
               <li>Gasto anual en mantenimiento</li>
-              <li>Configuración del sistema solar seleccionado</li>
+              <li>Configuración del sistema de transporte solar seleccionado</li>
               <li>Parámetros de pago (pago inicial, pago mensual, interés, subsidio)</li>
+              <li>Resultados de la calculadora</li>
             </ul>
             <h3>¿Cómo se usan los datos?</h3>
-            <p>Los datos se almacenan en una hoja de cálculo interna de Fundación Kara Solar. Se utilizan exclusivamente para:</p>
+            <p>Los datos se almacenan en una hoja de cálculo interna de Kara Solar. Se utilizan exclusivamente para:</p>
             <ul>
               <li>Analizar el costo del combustible y los patrones de uso de botes en distintas zonas de la Amazonía</li>
               <li>Mejorar los modelos financieros para la expansión del transporte solar</li>
@@ -151,18 +152,18 @@
               <li>Reportes internos y de impacto para socios y financiadores</li>
             </ul>
             <h3>Privacidad y confidencialidad</h3>
-            <p>Los datos no se venden a terceros bajo ninguna circunstancia. No se recopila información de identificación personal más allá de la ubicación geográfica general. Los datos se almacenan de forma segura y solo el equipo de Fundación Kara Solar tiene acceso a ellos. Datos agregados sin identificadores específicos pueden compartirse en reportes públicos de impacto.</p>`,
+            <p>Los datos no se venden a terceros bajo ninguna circunstancia. No se recopila información de identificación personal más allá de la ubicación geográfica general. Los datos se almacenan de forma segura y solo el equipo de Kara Solar tiene acceso a ellos. Datos agregados sin identificadores específicos pueden compartirse en reportes públicos de impacto.</p>`,
 
         'page-aviso-content': `
             <h2>Aviso legal y descargo de responsabilidad</h2>
             <h3>Estimaciones, no garantías</h3>
             <p>Los resultados de esta calculadora son estimaciones basadas en los datos ingresados y en supuestos generales. Los ahorros reales, plazos de pago y tiempos de recuperación de inversión pueden variar según el uso real del bote, las fluctuaciones en el precio de la gasolina, las condiciones de financiamiento y otros factores locales.</p>
             <h3>Uso de datos</h3>
-            <p>Al usar esta herramienta, se acepta que los datos ingresados sean recopilados por Fundación Kara Solar con fines de investigación y planificación, según el Protocolo de datos. Los datos no serán vendidos a terceros.</p>
+            <p>Al usar esta herramienta, se acepta que los datos ingresados sean recopilados por Kara Solar con fines de investigación y planificación, según el <a href="#" onclick="navigateTo('protocolo'); return false;">Protocolo de datos</a>. Los datos no serán vendidos a terceros.</p>
             <h3>Sin responsabilidad financiera</h3>
-            <p>Esta herramienta no constituye asesoramiento financiero, legal o de inversión. Fundación Kara Solar y Motores Amazonas no se hacen responsables de decisiones tomadas basándose en los resultados de esta calculadora.</p>
+            <p>Esta herramienta no constituye asesoramiento financiero, legal o de inversión. Kara Solar no se hace responsable de decisiones tomadas basándose en los resultados de esta calculadora.</p>
             <h3>Precios de referencia</h3>
-            <p>Los precios de los sistemas solares de Motores Amazonas son de referencia y pueden cambiar. Para precios actualizados y disponibilidad, contactar directamente a Motores Amazonas en <a href="https://motoresamazonas.com/" target="_blank">motoresamazonas.com</a>.</p>`
+            <p>Los precios de los equipos de transporte solar de Kara Solar son precios de referencia y pueden cambiar. Para precios actualizados y disponibilidad, contacte directamente a Kara Solar en <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>.</p>`
     },
 
     en: {
@@ -264,11 +265,11 @@
 
         'page-supuestos-content': `
             <h2>How does this calculator work?</h2>
-            <p>This tool estimates the total cost of gasoline transport, compares it with the cost of a Motores Amazonas solar system, and calculates how long it would take to pay off the boat and recover the investment. Results are estimates and may vary depending on actual use and local conditions.</p>
+            <p>This tool estimates the total cost of gasoline transport, compares it with the cost of a Kara Solar solar transport system, and calculates how long it would take to pay off the boat and recover the investment. Results are estimates and may vary depending on actual use and local conditions.</p>
             <h3>Main assumptions</h3>
             <h3>Monthly gasoline and maintenance cost</h3>
             <p>Gallons/month = (km/week × 4.33) ÷ km/gallon<br>Fuel/month = gallons/month × price/gallon<br>Monthly total = fuel/month + (annual maintenance ÷ 12)</p>
-            <h3>Total solar system cost</h3>
+            <h3>Total solar transport system cost</h3>
             <p>Total cost = motor + panels (US$1,500 if applicable) + extra battery (US$2,500 if applicable)<br>Amount to finance = total cost − subsidy − down payment</p>
             <h3>Years to pay off the boat</h3>
             <p>Without interest: months = financed amount ÷ monthly payment → years = months ÷ 12<br>With interest: standard amortization formula</p>
@@ -276,10 +277,10 @@
             <p>The gasoline side includes the initial engine cost plus monthly fuel and maintenance spending over 120 months. The solar side includes the down payment and monthly payments until the boat is paid off, and US$0 after that.</p>
             <p>Gasoline 10-year total = gasoline engine cost + (monthly expense × 120)<br>Solar 10-year total = down payment + (monthly payment × months until paid, max 120)</p>
             <h3>Time to recover investment (ROI)</h3>
-            <p>The net investment is the difference between the solar system cost and the gasoline engine cost it replaces. The payback period is how many years of fuel and maintenance savings are needed to cover that net investment.</p>
-            <p>Net investment = total solar system cost − gasoline engine cost<br>Annual savings = (monthly fuel expense + maintenance) × 12<br>ROI = net investment ÷ annual savings</p>
+            <p>The net investment is the difference between the solar transport system cost and the gasoline engine cost it replaces. The payback period is how many years of fuel and maintenance savings are needed to cover that net investment.</p>
+            <p>Net investment = total solar transport system cost − gasoline engine cost<br>Annual savings = (monthly fuel expense + maintenance) × 12<br>ROI = net investment ÷ annual savings</p>
             <h3>Example</h3>
-            <p>A family from Sharamentsa, Ecuador, travels 60 km/week. Gasoline price: US$7.50/gallon. Efficiency: 14 km/gallon. Maintenance: US$300/year. Gasoline engine: US$900. Full solar system (US$10,000). Down payment: US$500. Monthly payment: US$150. No interest, no subsidy.</p>
+            <p>A family from Sharamentsa, Ecuador, travels 60 km/week. Gasoline price: US$7.50/gallon. Efficiency: 14 km/gallon. Maintenance: US$300/year. Gasoline engine: US$900. Full solar transport system (US$10,000). Down payment: US$500. Monthly payment: US$150. No interest, no subsidy.</p>
             <table class="comparison-table" style="margin-top:1rem">
               <thead><tr><th>Estimated result</th><th>Value</th></tr></thead>
               <tbody>
@@ -296,7 +297,7 @@
 
         'page-protocolo-content': `
             <h2>Data collection protocol</h2>
-            <p>The Ríos Solares Calculator collects data with the aim of improving solar transport planning in the Amazon and supporting the mission of Fundación Kara Solar.</p>
+            <p>The Ríos Solares Calculator collects data with the aim of improving solar transport planning in the Amazon and supporting the mission of Kara Solar.</p>
             <h3>What data is collected?</h3>
             <ul>
               <li>Location (community and country)</li>
@@ -305,11 +306,12 @@
               <li>Engine efficiency (km/gallon)</li>
               <li>Cost of the gasoline engine in the area</li>
               <li>Annual maintenance spending</li>
-              <li>Selected solar system configuration</li>
+              <li>Selected solar transport system configuration</li>
               <li>Payment parameters (down payment, monthly payment, interest, subsidy)</li>
+              <li>Calculator results</li>
             </ul>
             <h3>How is the data used?</h3>
-            <p>Data is stored in an internal Fundación Kara Solar spreadsheet. It is used exclusively to:</p>
+            <p>Data is stored in an internal Kara Solar spreadsheet. It is used exclusively to:</p>
             <ul>
               <li>Analyze fuel costs and boat usage patterns in different areas of the Amazon</li>
               <li>Improve financial models for solar transport expansion</li>
@@ -317,18 +319,18 @@
               <li>Internal and impact reports for partners and funders</li>
             </ul>
             <h3>Privacy and confidentiality</h3>
-            <p>Data is never sold to third parties under any circumstances. No personally identifiable information is collected beyond general geographic location. Data is stored securely and only the Fundación Kara Solar team has access. Aggregated data without specific identifiers may be shared in public impact reports.</p>`,
+            <p>Data is never sold to third parties under any circumstances. No personally identifiable information is collected beyond general geographic location. Data is stored securely and only the Kara Solar team has access. Aggregated data without specific identifiers may be shared in public impact reports.</p>`,
 
         'page-aviso-content': `
             <h2>Legal notice and disclaimer</h2>
             <h3>Estimates, not guarantees</h3>
             <p>The results of this calculator are estimates based on the data entered and general assumptions. Actual savings, payment terms, and investment recovery times may vary depending on actual boat usage, fluctuations in gasoline prices, financing conditions, and other local factors.</p>
             <h3>Data use</h3>
-            <p>By using this tool, you agree that the data entered may be collected by Fundación Kara Solar for research and planning purposes, as described in the Data Protocol. Data will not be sold to third parties.</p>
+            <p>By using this tool, you agree that the data entered may be collected by Kara Solar for research and planning purposes, as described in the <a href="#" onclick="navigateTo('protocolo'); return false;">Data Protocol</a>. Data will not be sold to third parties.</p>
             <h3>No financial liability</h3>
-            <p>This tool does not constitute financial, legal, or investment advice. Fundación Kara Solar and Motores Amazonas are not responsible for decisions made based on the results of this calculator.</p>
+            <p>This tool does not constitute financial, legal, or investment advice. Kara Solar is not responsible for decisions made based on the results of this calculator.</p>
             <h3>Reference prices</h3>
-            <p>Prices for Motores Amazonas solar systems are reference prices and may change. For updated prices and availability, contact Motores Amazonas directly at <a href="https://motoresamazonas.com/" target="_blank">motoresamazonas.com</a>.</p>`
+            <p>Prices for Kara Solar solar transport equipment are reference prices and may change. For updated prices and availability, contact Kara Solar directly at <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>.</p>`
     },
 
     pt: {
@@ -430,11 +432,11 @@
 
         'page-supuestos-content': `
             <h2>Como funciona esta calculadora?</h2>
-            <p>Esta ferramenta estima o custo total do transporte a gasolina, compara com o custo de um sistema solar da Motores Amazonas, e calcula quanto tempo levaria para pagar o barco e recuperar o investimento. Os resultados são estimativas e podem variar conforme o uso real e as condições locais.</p>
+            <p>Esta ferramenta estima o custo total do transporte a gasolina, compara com o custo de um sistema de transporte solar da Kara Solar, e calcula quanto tempo levaria para pagar o barco e recuperar o investimento. Os resultados são estimativas e podem variar conforme o uso real e as condições locais.</p>
             <h3>Premissas principais</h3>
             <h3>Custo mensal em gasolina e manutenção</h3>
             <p>Galões/mês = (km/semana × 4.33) ÷ km/galão<br>Combustível/mês = galões/mês × preço/galão<br>Total mensal = combustível/mês + (manutenção anual ÷ 12)</p>
-            <h3>Custo total do sistema solar</h3>
+            <h3>Custo total do sistema de transporte solar</h3>
             <p>Custo total = motor + painéis (US$1.500 se aplicável) + bateria extra (US$2.500 se aplicável)<br>Valor a financiar = custo total − subsídio − entrada</p>
             <h3>Anos para terminar de pagar o barco</h3>
             <p>Sem juros: meses = valor financiado ÷ pagamento mensal → anos = meses ÷ 12<br>Com juros: fórmula padrão de amortização</p>
@@ -442,10 +444,10 @@
             <p>No lado da gasolina inclui-se o custo inicial do motor mais o gasto mensal em combustível e manutenção durante 120 meses. No lado solar, inclui-se a entrada e os pagamentos mensais até completar o pagamento do barco, e US$0 depois.</p>
             <p>Total gasolina 10 anos = custo motor gasolina + (gasto mensal × 120)<br>Total solar 10 anos = entrada + (pagamento mensal × meses até pagar, máx 120)</p>
             <h3>Tempo para recuperar o investimento (ROI)</h3>
-            <p>O investimento líquido é a diferença entre o custo do sistema solar e o custo do motor a gasolina que ele substitui. O tempo de retorno é quantos anos de poupança em combustível e manutenção são necessários para cobrir esse investimento líquido.</p>
-            <p>Investimento líquido = custo total sistema solar − custo motor gasolina<br>Poupança anual = (gasto mensal combustível + manutenção) × 12<br>ROI = investimento líquido ÷ poupança anual</p>
+            <p>O investimento líquido é a diferença entre o custo do sistema de transporte solar e o custo do motor a gasolina que ele substitui. O tempo de retorno é quantos anos de poupança em combustível e manutenção são necessários para cobrir esse investimento líquido.</p>
+            <p>Investimento líquido = custo total sistema de transporte solar − custo motor gasolina<br>Poupança anual = (gasto mensal combustível + manutenção) × 12<br>ROI = investimento líquido ÷ poupança anual</p>
             <h3>Exemplo</h3>
-            <p>Uma família de Sharamentsa, Equador, navega 60 km/semana. Preço gasolina: US$7,50/galão. Rendimento: 14 km/galão. Manutenção: US$300/ano. Motor gasolina: US$900. Sistema solar completo (US$10.000). Entrada: US$500. Pagamento mensal: US$150. Sem juros, sem subsídio.</p>
+            <p>Uma família de Sharamentsa, Equador, navega 60 km/semana. Preço gasolina: US$7,50/galão. Rendimento: 14 km/galão. Manutenção: US$300/ano. Motor gasolina: US$900. Sistema de transporte solar completo (US$10.000). Entrada: US$500. Pagamento mensal: US$150. Sem juros, sem subsídio.</p>
             <table class="comparison-table" style="margin-top:1rem">
               <thead><tr><th>Resultado estimado</th><th>Valor</th></tr></thead>
               <tbody>
@@ -462,7 +464,7 @@
 
         'page-protocolo-content': `
             <h2>Protocolo de coleta de dados</h2>
-            <p>A Calculadora Ríos Solares coleta dados com o objetivo de melhorar o planejamento do transporte solar na Amazônia e apoiar a missão da Fundação Kara Solar.</p>
+            <p>A Calculadora Ríos Solares coleta dados com o objetivo de melhorar o planejamento do transporte solar na Amazônia e apoiar a missão da Kara Solar.</p>
             <h3>Quais dados são coletados?</h3>
             <ul>
               <li>Localização (comunidade e país)</li>
@@ -471,11 +473,12 @@
               <li>Rendimento do motor (km/galão)</li>
               <li>Custo do motor a gasolina na região</li>
               <li>Gasto anual em manutenção</li>
-              <li>Configuração do sistema solar selecionado</li>
+              <li>Configuração do sistema de transporte solar selecionado</li>
               <li>Parâmetros de pagamento (entrada, pagamento mensal, juros, subsídio)</li>
+              <li>Resultados da calculadora</li>
             </ul>
             <h3>Como os dados são utilizados?</h3>
-            <p>Os dados são armazenados em uma planilha interna da Fundação Kara Solar. São utilizados exclusivamente para:</p>
+            <p>Os dados são armazenados em uma planilha interna da Kara Solar. São utilizados exclusivamente para:</p>
             <ul>
               <li>Analisar o custo do combustível e os padrões de uso de barcos em diferentes regiões da Amazônia</li>
               <li>Melhorar os modelos financeiros para a expansão do transporte solar</li>
@@ -483,18 +486,18 @@
               <li>Relatórios internos e de impacto para parceiros e financiadores</li>
             </ul>
             <h3>Privacidade e confidencialidade</h3>
-            <p>Os dados não são vendidos a terceiros em nenhuma circunstância. Nenhuma informação de identificação pessoal é coletada além da localização geográfica geral. Os dados são armazenados de forma segura e apenas a equipe da Fundação Kara Solar tem acesso. Dados agregados sem identificadores específicos podem ser compartilhados em relatórios públicos de impacto.</p>`,
+            <p>Os dados não são vendidos a terceiros em nenhuma circunstância. Nenhuma informação de identificação pessoal é coletada além da localização geográfica geral. Os dados são armazenados de forma segura e apenas a equipe da Kara Solar tem acesso. Dados agregados sem identificadores específicos podem ser compartilhados em relatórios públicos de impacto.</p>`,
 
         'page-aviso-content': `
             <h2>Aviso legal e isenção de responsabilidade</h2>
             <h3>Estimativas, não garantias</h3>
             <p>Os resultados desta calculadora são estimativas baseadas nos dados inseridos e em premissas gerais. As poupanças reais, prazos de pagamento e tempos de recuperação do investimento podem variar conforme o uso real do barco, as flutuações no preço da gasolina, as condições de financiamento e outros fatores locais.</p>
             <h3>Uso de dados</h3>
-            <p>Ao usar esta ferramenta, você concorda que os dados inseridos sejam coletados pela Fundação Kara Solar com fins de pesquisa e planejamento, conforme o Protocolo de dados. Os dados não serão vendidos a terceiros.</p>
+            <p>Ao usar esta ferramenta, você concorda que os dados inseridos sejam coletados pela Kara Solar com fins de pesquisa e planejamento, conforme o <a href="#" onclick="navigateTo('protocolo'); return false;">Protocolo de dados</a>. Os dados não serão vendidos a terceiros.</p>
             <h3>Sem responsabilidade financeira</h3>
-            <p>Esta ferramenta não constitui aconselhamento financeiro, jurídico ou de investimento. A Fundação Kara Solar e a Motores Amazonas não se responsabilizam por decisões tomadas com base nos resultados desta calculadora.</p>
+            <p>Esta ferramenta não constitui aconselhamento financeiro, jurídico ou de investimento. A Kara Solar não se responsabiliza por decisões tomadas com base nos resultados desta calculadora.</p>
             <h3>Preços de referência</h3>
-            <p>Os preços dos sistemas solares da Motores Amazonas são de referência e podem mudar. Para preços atualizados e disponibilidade, entre em contato diretamente com a Motores Amazonas em <a href="https://motoresamazonas.com/" target="_blank">motoresamazonas.com</a>.</p>`
+            <p>Os preços dos equipamentos de transporte solar da Kara Solar são preços de referência e podem mudar. Para preços atualizados e disponibilidade, entre em contato diretamente com a Kara Solar em <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>.</p>`
     }
 };
 
