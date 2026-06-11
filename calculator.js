@@ -83,14 +83,20 @@ function calculateResults() {
   let rawMonths;
   if (interest > 0) {
     const r = interest / 100 / 12;
-    rawMonths = -Math.log(1 - financed * r / monthlyPayment) / Math.log(1 + r);
-    months = Math.ceil(rawMonths);
+    const interestOnly = financed * r;
+    if (monthlyPayment <= interestOnly) {
+      rawMonths = NaN;
+      months = Number.POSITIVE_INFINITY;
+    } else {
+      rawMonths = -Math.log(1 - interestOnly / monthlyPayment) / Math.log(1 + r);
+      months = Math.ceil(rawMonths);
+    }
   } else {
     rawMonths = financed / monthlyPayment;
     months = rawMonths;
   }
 
-  const years = rawMonths / 12;
+  const years = Number.isFinite(rawMonths) ? rawMonths / 12 : NaN;
 
   const gas10y   = gasEngine + gasMonthly * 120;
   const solar10y = downpayment + monthlyPayment * Math.min(months, 120);
@@ -110,7 +116,7 @@ function calculateResults() {
   document.getElementById('gas-10y').innerText        = formatMoney(gas10y);
   document.getElementById('solar-10y').innerText      = formatMoney(solar10y);
   document.getElementById('savings-total').innerText  = formatMoney(savings);
-  document.getElementById('payoff-years').innerText   = years.toFixed(1) + ' ' + unitYears;
+  document.getElementById('payoff-years').innerText   = Number.isFinite(years) ? years.toFixed(1) + ' ' + unitYears : ('> 10 ' + unitYears);
   document.getElementById('roi-years').innerText      = roiYears.toFixed(1) + ' ' + unitYears;
 
   document.getElementById('warning-term').classList.toggle('visible', months > 60);
@@ -126,7 +132,7 @@ function calculateResults() {
 
   document.getElementById('sum-gas-monthly').innerText   = formatMoney(gasMonthly);
   document.getElementById('sum-solar-monthly').innerText = formatMoney(monthlyPayment);
-  document.getElementById('sum-payoff').innerText        = years.toFixed(1) + ' ' + unitYears;
+  document.getElementById('sum-payoff').innerText        = Number.isFinite(years) ? years.toFixed(1) + ' ' + unitYears : ('> 10 ' + unitYears);
   document.getElementById('sum-savings').innerText       = formatMoney(savings);
 
   const diff       = monthlyPayment - gasMonthly;

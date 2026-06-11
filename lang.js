@@ -113,7 +113,7 @@
             <h3>Costo mensual en gasolina y mantenimiento</h3>
             <p>Galones/mes = (km/semana × 4.33) ÷ km/galón<br>Combustible/mes = galones/mes × precio/galón<br>Total mensual = combustible/mes + (mantenimiento anual ÷ 12)</p>
             <h3>Costo total del sistema de transporte solar</h3>
-            <p>Costo total = motor + paneles (US$1.500 si aplica) + batería extra (US$2.500 si aplica)<br>Monto a financiar = costo total − subsidio − pago inicial</p>
+            <p>Costo total = motor + paneles (US$1.500 si aplica) + batería extra (US$2.500 si aplica) + casco (US$2.000 si aplica)<br>Monto a financiar = costo total − subsidio − pago inicial</p>
             <h3>Años para terminar de pagar el bote</h3>
             <p>Sin interés: meses = monto financiado ÷ pago mensual → años = meses ÷ 12<br>Con interés: fórmula estándar de amortización</p>
             <h3>Comparación a 10 años</h3>
@@ -290,7 +290,7 @@
             <h3>Monthly gasoline and maintenance cost</h3>
             <p>Gallons/month = (km/week × 4.33) ÷ km/gallon<br>Fuel/month = gallons/month × price/gallon<br>Monthly total = fuel/month + (annual maintenance ÷ 12)</p>
             <h3>Total solar transport system cost</h3>
-            <p>Total cost = motor + panels (US$1,500 if applicable) + extra battery (US$2,500 if applicable)<br>Amount to finance = total cost − subsidy − down payment</p>
+            <p>Total cost = motor + panels (US$1,500 if applicable) + extra battery (US$2,500 if applicable) + hull (US$2,000 if applicable)<br>Amount to finance = total cost − subsidy − down payment</p>
             <h3>Years to pay off the boat</h3>
             <p>Without interest: months = financed amount ÷ monthly payment → years = months ÷ 12<br>With interest: standard amortization formula</p>
             <h3>10-year comparison</h3>
@@ -467,7 +467,7 @@
             <h3>Custo mensal em gasolina e manutenção</h3>
             <p>Galões/mês = (km/semana × 4.33) ÷ km/galão<br>Combustível/mês = galões/mês × preço/galão<br>Total mensal = combustível/mês + (manutenção anual ÷ 12)</p>
             <h3>Custo total do sistema de transporte solar</h3>
-            <p>Custo total = motor + painéis (US$1.500 se aplicável) + bateria extra (US$2.500 se aplicável)<br>Valor a financiar = custo total − subsídio − entrada</p>
+            <p>Custo total = motor + painéis (US$1.500 se aplicável) + bateria extra (US$2.500 se aplicável) + casco (US$2.000 se aplicável)<br>Valor a financiar = custo total − subsídio − entrada</p>
             <h3>Anos para terminar de pagar o barco</h3>
             <p>Sem juros: meses = valor financiado ÷ pagamento mensal → anos = meses ÷ 12<br>Com juros: fórmula padrão de amortização</p>
             <h3>Comparação em 10 anos</h3>
