@@ -1,5 +1,5 @@
-let addPanels  = true;
-let addBattery = true;
+let addPanels  = false;
+let addBattery = false;
 let addHull    = false;
 
 function goToStep(step) {
@@ -59,12 +59,9 @@ function calculateResults() {
   const kmPerGal    = parseFloat(document.getElementById('km_per_gal').value)      || 14;
   const repairsYear = parseFloat(document.getElementById('repair_cost_yr').value)  || 0;
 
-  const electricPrice  = parseFloat(document.getElementById('electric_price').value) || 6000;
-  const downpayment    = parseFloat(document.getElementById('downpayment').value)    || 0;
-  const subsidy        = parseFloat(document.getElementById('subsidy').value)        || 0;
-
-  const monthlyPayment = parseFloat(document.getElementById('monthly_payment').value) || 80;
-  const interest       = parseFloat(document.getElementById('interest').value)        || 0;
+  const electricPrice = parseFloat(document.getElementById('electric_price').value) || 6000;
+  const subsidy       = parseFloat(document.getElementById('subsidy').value)        || 0;
+  const interest      = parseFloat(document.getElementById('interest').value)       || 0;
 
   const monthlyGallons = (kmWeek * 4.33) / kmPerGal;
   const fuelMonthly    = monthlyGallons * gasPrice;
@@ -77,11 +74,53 @@ function calculateResults() {
     (addBattery ? 2500 : 0) +
     (addHull    ? 2000 : 0);
 
+  // Cap downpayment at solarCost
+  const downpaymentInput = document.getElementById('downpayment');
+  downpaymentInput.max = solarCost;
+  const downpaymentRaw = parseFloat(downpaymentInput.value) || 0;
+  if (downpaymentRaw > solarCost) downpaymentInput.value = solarCost;
+  const downpayment = Math.min(downpaymentRaw, solarCost);
+
   const financed = Math.max(0, solarCost - subsidy - downpayment);
+
+  // Adjust slider bounds and value based on financed amount, then read payment
+  const smallBalance = financed > 0 && (financed / 60) < 50;
+
+  if (financed <= 0) {
+    monthlySlider.min      = 0;
+    monthlySlider.max      = 400;
+    monthlySlider.value    = 0;
+    monthlySlider.disabled = true;
+    document.getElementById('monthly_payment_label').innerText = 'US$0';
+  } else if (smallBalance) {
+    const newMax = Math.max(1, Math.ceil(financed / 60));
+    monthlySlider.disabled = false;
+    monthlySlider.min = 0;
+    monthlySlider.max = newMax;
+    const clamped = Math.min(parseInt(monthlySlider.value) || newMax, newMax);
+    monthlySlider.value = clamped;
+    document.getElementById('monthly_payment_label').innerText = 'US$' + clamped;
+  } else {
+    monthlySlider.disabled = false;
+    monthlySlider.min = 50;
+    monthlySlider.max = 400;
+    if (parseInt(monthlySlider.value) < 50) {
+      monthlySlider.value = 80;
+      document.getElementById('monthly_payment_label').innerText = 'US$80';
+    }
+  }
+
+  document.getElementById('warning-large-dp').classList.toggle('visible', smallBalance && Math.ceil(financed / 60) <= 10);
+
+  const monthlyPayment   = parseFloat(monthlySlider.value) || 0;
+  const effectiveMonthly = financed <= 0 ? 0 : monthlyPayment;
 
   let months;
   let rawMonths;
-  if (interest > 0) {
+  if (financed <= 0) {
+    rawMonths = 0;
+    months = 0;
+  } else if (interest > 0) {
     const r = interest / 100 / 12;
     const interestOnly = financed * r;
     if (monthlyPayment <= interestOnly) {
@@ -99,7 +138,7 @@ function calculateResults() {
   const years = Number.isFinite(rawMonths) ? rawMonths / 12 : NaN;
 
   const gas10y   = gasEngine + gasMonthly * 120;
-  const solar10y = downpayment + monthlyPayment * Math.min(months, 120);
+  const solar10y = downpayment + effectiveMonthly * Math.min(months, 120);
   const savings  = gas10y - solar10y;
 
   const roiYears = gasMonthly > 0
@@ -112,7 +151,7 @@ function calculateResults() {
   document.getElementById('gas-upfront').innerText    = formatMoney(gasEngine);
   document.getElementById('solar-upfront').innerText  = formatMoney(solarCost);
   document.getElementById('gas-monthly').innerText    = formatMoney(gasMonthly);
-  document.getElementById('solar-monthly').innerText  = formatMoney(monthlyPayment);
+  document.getElementById('solar-monthly').innerText  = formatMoney(effectiveMonthly);
   document.getElementById('gas-10y').innerText        = formatMoney(gas10y);
   document.getElementById('solar-10y').innerText      = formatMoney(solar10y);
   document.getElementById('savings-total').innerText  = formatMoney(savings);
@@ -131,11 +170,11 @@ function calculateResults() {
   document.getElementById('bd-hull-row').style.display    = addHull    ? '' : 'none';
 
   document.getElementById('sum-gas-monthly').innerText   = formatMoney(gasMonthly);
-  document.getElementById('sum-solar-monthly').innerText = formatMoney(monthlyPayment);
+  document.getElementById('sum-solar-monthly').innerText = formatMoney(effectiveMonthly);
   document.getElementById('sum-payoff').innerText        = Number.isFinite(years) ? years.toFixed(1) + ' ' + unitYears : ('> 10 ' + unitYears);
   document.getElementById('sum-savings').innerText       = formatMoney(savings);
 
-  const diff       = monthlyPayment - gasMonthly;
+  const diff       = effectiveMonthly - gasMonthly;
   const diffTextEl = document.getElementById('sum-diff-text');
   if (diff > 0.5) {
     diffTextEl.innerHTML = (t['sum-diff-more'] || 'pagando <strong>{amount}</strong> más').replace('{amount}', formatMoney(Math.abs(diff)));

@@ -70,6 +70,8 @@
 
         'warning-title': 'El plazo de pago supera los 5 años',
         'warning-text': 'Con estos datos, el bote tardaría más de 5 años en pagarse — más que el período de garantía de Motores Amazonas.<br>Considera aumentar el pago mensual o el pago inicial para acortar el plazo.',
+        'warning-large-dp-title': 'Pago inicial muy alto',
+        'warning-large-dp-text': 'El monto financiado es muy pequeño. Las cuotas se ajustaron automáticamente. Puede haber pequeñas diferencias de redondeo en los totales.',
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar seleccionado',
@@ -247,6 +249,8 @@
 
         'warning-title': 'Payment term exceeds 5 years',
         'warning-text': 'With this data, the boat would take more than 5 years to pay off — longer than the Motores Amazonas warranty period.<br>Consider increasing the monthly payment or down payment to shorten the term.',
+        'warning-large-dp-title': 'Very high initial payment',
+        'warning-large-dp-text': 'The financed amount is very small. Monthly instalments were adjusted automatically. You may see minor rounding differences in the totals.',
 
         'results-title': 'Results',
         'bd-system-title': 'Selected solar system',
@@ -424,6 +428,8 @@
 
         'warning-title': 'O prazo de pagamento ultrapassa 5 anos',
         'warning-text': 'Com esses dados, o barco levaria mais de 5 anos para ser pago — mais do que o período de garantia da Motores Amazonas.<br>Considere aumentar o pagamento mensal ou a entrada para encurtar o prazo.',
+        'warning-large-dp-title': 'Entrada muito alta',
+        'warning-large-dp-text': 'O valor financiado é muito pequeno. As parcelas foram ajustadas automaticamente. Pode haver pequenas diferenças de arredondamento nos totais.',
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar selecionado',
