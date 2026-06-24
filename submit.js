@@ -1,11 +1,19 @@
 // URL injected at build time by GitHub Actions (secret: APP_SCRIPT)
 const APP_SCRIPT_URL = '__APP_SCRIPT__';
 
+// One UUID per browser tab — resets when the tab closes
+const SESSION_ID = sessionStorage.getItem('sessionId') || (() => {
+  const id = crypto.randomUUID();
+  sessionStorage.setItem('sessionId', id);
+  return id;
+})();
+
 function submitToSheet() {
   if (!APP_SCRIPT_URL || APP_SCRIPT_URL === '__APP_SCRIPT__') return;
 
   const latlng = marker.getLatLng();
   const payload = {
+    sessionId:    SESSION_ID,
     coordinates:  `${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)}`,
     kmWeek:       document.getElementById('km_week').value,
     gasPrice:     document.getElementById('gas_price').value,
