@@ -2,7 +2,7 @@
     es: {
         'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
-        'hero-desc': 'Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar <strong>fluvial en la Amazonia</strong>.',
+        'hero-desc': 'El transporte fluvial solar ya es una realidad. Con esta herramienta, calcula tu inversión inicial, el ahorro y la viabilidad financiera para propulsar tu bote con nuestro motor solar.',
 
         'nav-calculadora': 'Calculadora',
         'nav-supuestos': 'Supuestos',
@@ -12,7 +12,7 @@
         'step1-title': 'Paso 1 de 3 — Uso Actual',
         'step1-location-header': 'UBICACIÓN',
         'step1-location-label': 'Selecciona la ubicación aproximada',
-        'step1-location-hint': 'Haz clic en el mapa para ubicar la comunidad.',
+        'step1-location-hint': 'Selecciona tu ubicación aproximada.',
         'btn-locate': 'Localizame',
         'map-search-placeholder': 'Buscar ubicación...',
         'btn-search': 'Buscar',
@@ -40,6 +40,7 @@
         'step2-battery-hint': 'Una batería extra cuesta US$2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.',
         'step2-hull-label': '¿Se añadirá un casco de fibra de vidrio?',
         'step2-hull-hint': 'El costo de un casco de fibra de vidrio varía, pero el promedio en Ecuador es de US$2.000. Si ya cuenta con un casco de canoa de cola larga en buena condición, es probable que el motor eléctrico pueda instalarse en el casco existente.',
+        'step2-total-label': 'Total del sistema configurado',
         'step2-catalogue-link': 'Conoce más sobre los equipos de transporte solar de Kara Solar →',
         'step2-payment-title': 'PLAN DE PAGO',
         'step2-downpayment-label': 'Pago inicial (US$)',
@@ -69,11 +70,13 @@
         'btn-download': 'Descargar Catálogo',
 
         'warning-title': 'El plazo de pago supera los 5 años',
-        'warning-text': 'Con estos datos, el bote tardaría más de 5 años en pagarse — más que el período de garantía de Motores Amazonas.<br>Considera aumentar el pago mensual o el pago inicial para acortar el plazo.',
+        'warning-text': 'Con estos datos, el bote tardaría más de 5 años en pagarse — más que nuestra garantía.<br>Considera aumentar el pago mensual o el pago inicial para acortar el plazo.',
+        'warning-large-dp-title': 'Pago inicial muy alto',
+        'warning-large-dp-text': 'El monto financiado es muy pequeño. Las cuotas se ajustaron automáticamente. Puede haber pequeñas diferencias de redondeo en los totales.',
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar seleccionado',
-        'bd-motor-label': 'Motor eléctrico + batería (Kara Solar)',
+        'bd-motor-label': 'Motor eléctrico + batería',
         'bd-panels-label': 'Paneles solares',
         'bd-battery-label': 'Segunda batería',
         'bd-hull-label': 'Casco de fibra de vidrio',
@@ -104,7 +107,7 @@
         'footer-title': 'Sobre Kara Solar',
         'footer-desc': '"Kara" significa "un sueño que se hace realidad" en achuar. Nuestro sueño es una Amazonía solar. Estamos haciendo realidad ese sueño construyendo un ecosistema unificado que integra tecnología limpia, gobernanza comunitaria y financiamiento sostenible para escalar la movilidad fluvial solar desde el territorio achuar hacia toda la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a>',
         'footer-cta': '¿Listo para hacer la transición al transporte fluvial solar? Escríbenos a <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
-        'footer-credits': 'Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Borja Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a>',
+        'footer-credits': 'Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a>',
 
         'page-supuestos-content': `
             <h2>¿Cómo funciona esta calculadora?</h2>
@@ -179,7 +182,7 @@
     en: {
         'page-title': 'Ríos Solares Calculator | Kara Solar',
         'hero-title': 'Ríos Solares Calculator',
-        'hero-desc': 'This tool allows you to compare costs, estimate savings, and evaluate the financial viability of switching from gasoline to solar river transport <strong>in the Amazon</strong>.',
+        'hero-desc': 'Solar river transport is already a reality. With this tool, calculate your initial investment, savings, and financial viability of powering your boat with our solar motor.',
 
         'nav-calculadora': 'Calculator',
         'nav-supuestos': 'Assumptions',
@@ -189,7 +192,7 @@
         'step1-title': 'Step 1 of 3 — Current Usage',
         'step1-location-header': 'LOCATION',
         'step1-location-label': 'Select the approximate location',
-        'step1-location-hint': 'Click on the map to locate the community.',
+        'step1-location-hint': 'Select your approximate location.',
         'btn-locate': 'Locate Me',
         'map-search-placeholder': 'Search location...',
         'btn-search': 'Search',
@@ -217,6 +220,7 @@
         'step2-battery-hint': 'An extra battery costs US$2,500 and allows greater travel time and distance, plus the ability to use one battery while the other charges.',
         'step2-hull-label': 'Will a fiberglass hull be added?',
         'step2-hull-hint': 'The cost of a fiberglass hull varies, but the average in Ecuador is US$2,000. If you already have a longboat canoe hull in good condition, the electric motor can likely be installed in the existing hull.',
+        'step2-total-label': 'Configured system total',
         'step2-catalogue-link': 'Learn more about Kara Solar\'s solar transport equipment →',
         'step2-payment-title': 'PAYMENT PLAN',
         'step2-downpayment-label': 'Down payment (US$)',
@@ -246,11 +250,13 @@
         'btn-download': 'Download Catalog',
 
         'warning-title': 'Payment term exceeds 5 years',
-        'warning-text': 'With this data, the boat would take more than 5 years to pay off — longer than the Motores Amazonas warranty period.<br>Consider increasing the monthly payment or down payment to shorten the term.',
+        'warning-text': 'With this data, the boat would take more than 5 years to pay off — longer than our warranty.<br>Consider increasing the monthly payment or down payment to shorten the term.',
+        'warning-large-dp-title': 'Very high initial payment',
+        'warning-large-dp-text': 'The financed amount is very small. Monthly instalments were adjusted automatically. You may see minor rounding differences in the totals.',
 
         'results-title': 'Results',
         'bd-system-title': 'Selected solar system',
-        'bd-motor-label': 'Electric motor + battery (Kara Solar)',
+        'bd-motor-label': 'Electric motor + battery',
         'bd-panels-label': 'Solar panels',
         'bd-battery-label': 'Second battery',
         'bd-hull-label': 'Fiberglass hull',
@@ -281,7 +287,7 @@
         'footer-title': 'About Kara Solar',
         'footer-desc': '"Kara" means "a dream that becomes reality" in Achuar. Our dream is a solar Amazon. We are making that dream a reality by building a unified ecosystem that integrates clean technology, community governance, and sustainable financing to scale solar river mobility from Achuar territory across the entire Amazon. <a href="https://karasolar.com/" target="_blank">Learn more →</a>',
         'footer-cta': 'Ready to make the transition to solar river transport? Write to us at <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
-        'footer-credits': 'This calculator was created by Leif Maynard, Daniel Enriquez, and Daniela Borja Kaisin. For questions about the calculator, <a href="mailto:hola@karasolar.com">contact us →</a>',
+        'footer-credits': 'This calculator was created by Leif Maynard, Daniel Enriquez, and Daniela Kaisin. For questions about the calculator, <a href="mailto:hola@karasolar.com">contact us →</a>',
 
         'page-supuestos-content': `
             <h2>How does this calculator work?</h2>
@@ -356,7 +362,7 @@
     pt: {
         'page-title': 'Calculadora Ríos Solares | Kara Solar',
         'hero-title': 'Calculadora Ríos Solares',
-        'hero-desc': 'Esta ferramenta permite comparar custos, estimar poupanças e avaliar a viabilidade financeira de mudar da gasolina para o transporte solar <strong>fluvial na Amazônia</strong>.',
+        'hero-desc': 'O transporte fluvial solar já é uma realidade. Com esta ferramenta, calcule seu investimento inicial, a poupança e a viabilidade financeira para propulsar seu barco com nosso motor solar.',
 
         'nav-calculadora': 'Calculadora',
         'nav-supuestos': 'Premissas',
@@ -366,7 +372,7 @@
         'step1-title': 'Passo 1 de 3 — Uso Atual',
         'step1-location-header': 'LOCALIZAÇÃO',
         'step1-location-label': 'Selecione a localização aproximada',
-        'step1-location-hint': 'Clique no mapa para localizar a comunidade.',
+        'step1-location-hint': 'Selecione sua localização aproximada.',
         'btn-locate': 'Localizar-me',
         'map-search-placeholder': 'Buscar localização...',
         'btn-search': 'Buscar',
@@ -394,6 +400,7 @@
         'step2-battery-hint': 'Uma bateria extra custa US$2.500 e permite maior tempo e distância de viagem, além de usar uma bateria enquanto a outra carrega.',
         'step2-hull-label': 'Será adicionado um casco de fibra de vidro?',
         'step2-hull-hint': 'O custo de um casco de fibra de vidro varia, mas a média no Equador é de US$2.000. Se você já possui um casco de canoa de rabeta em boas condições, provavelmente o motor elétrico poderá ser instalado no casco existente.',
+        'step2-total-label': 'Total do sistema configurado',
         'step2-catalogue-link': 'Saiba mais sobre os equipamentos de transporte solar da Kara Solar →',
         'step2-payment-title': 'PLANO DE PAGAMENTO',
         'step2-downpayment-label': 'Entrada (US$)',
@@ -423,11 +430,13 @@
         'btn-download': 'Baixar Catálogo',
 
         'warning-title': 'O prazo de pagamento ultrapassa 5 anos',
-        'warning-text': 'Com esses dados, o barco levaria mais de 5 anos para ser pago — mais do que o período de garantia da Motores Amazonas.<br>Considere aumentar o pagamento mensal ou a entrada para encurtar o prazo.',
+        'warning-text': 'Com esses dados, o barco levaria mais de 5 anos para ser pago — mais do que a nossa garantia.<br>Considere aumentar o pagamento mensal ou a entrada para encurtar o prazo.',
+        'warning-large-dp-title': 'Entrada muito alta',
+        'warning-large-dp-text': 'O valor financiado é muito pequeno. As parcelas foram ajustadas automaticamente. Pode haver pequenas diferenças de arredondamento nos totais.',
 
         'results-title': 'Resultados',
         'bd-system-title': 'Sistema solar selecionado',
-        'bd-motor-label': 'Motor elétrico + bateria (Kara Solar)',
+        'bd-motor-label': 'Motor elétrico + bateria',
         'bd-panels-label': 'Painéis solares',
         'bd-battery-label': 'Segunda bateria',
         'bd-hull-label': 'Casco de fibra de vidro',
@@ -458,7 +467,7 @@
         'footer-title': 'Sobre a Kara Solar',
         'footer-desc': '"Kara" significa "um sonho que se torna realidade" em achuar. Nosso sonho é uma Amazônia solar. Estamos tornando esse sonho realidade construindo um ecossistema unificado que integra tecnologia limpa, governança comunitária e financiamento sustentável para escalar a mobilidade fluvial solar desde o território achuar até toda a Amazônia. <a href="https://karasolar.com/" target="_blank">Saiba mais →</a>',
         'footer-cta': 'Pronto para fazer a transição para o transporte fluvial solar? Escreva-nos em <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>',
-        'footer-credits': 'Esta calculadora foi criada por Leif Maynard, Daniel Enriquez e Daniela Borja Kaisin. Para dúvidas sobre a calculadora, <a href="mailto:hola@karasolar.com">entre em contato →</a>',
+        'footer-credits': 'Esta calculadora foi criada por Leif Maynard, Daniel Enriquez e Daniela Kaisin. Para dúvidas sobre a calculadora, <a href="mailto:hola@karasolar.com">entre em contato →</a>',
 
         'page-supuestos-content': `
             <h2>Como funciona esta calculadora?</h2>

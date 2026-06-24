@@ -128,16 +128,16 @@
           <label data-il8n="step2-panels-label">¿Se agregarán paneles solares para cargar el bote?</label>
           <small data-il8n="step2-panels-hint">Los paneles cuestan $1.500. Si se usará otra fuente de energía, deja en NO.</small>
           <div class="toggle-group">
-            <button class="toggle-btn active" id="panel-yes" data-il8n="btn-yes">Sí</button>
-            <button class="toggle-btn" id="panel-no" data-il8n="btn-no">No</button>
+            <button class="toggle-btn" id="panel-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="panel-no" data-il8n="btn-no">No</button>
           </div>
 
           <label data-il8n="step2-battery-label">¿Se agregará una segunda batería?</label>
           <small data-il8n="step2-battery-hint">Una batería extra cuesta $2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.</small>
 
           <div class="toggle-group">
-            <button class="toggle-btn active" id="battery-yes" data-il8n="btn-yes">Sí</button>
-            <button class="toggle-btn" id="battery-no" data-il8n="btn-no">No</button>
+            <button class="toggle-btn" id="battery-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="battery-no" data-il8n="btn-no">No</button>
           </div>
 
           <label data-il8n="step2-hull-label">¿Se añadirá un casco de fibra de vidrio?</label>
@@ -147,8 +147,14 @@
             <button class="toggle-btn active" id="hull-no" data-il8n="btn-no">No</button>
           </div>
 
-          <!-- NOTE: HREF TO CATALOGUE PENDING -->
-          <p class="catalogue-link"><a href="#" data-il8n="step2-catalogue-link">Conoce más sobre los equipos de transporte solar de Kara Solar →</a></p>
+          <div class="breakdown-card" style="margin-top:1.5rem">
+            <div class="breakdown-row">
+              <span data-il8n="step2-total-label">Total del sistema configurado</span>
+              <span id="step2-system-total">US$6,000</span>
+            </div>
+          </div>
+
+          <p class="catalogue-link"><a href="catalogo_ma_2026.pdf" target="_blank" data-il8n="step2-catalogue-link">Conoce más sobre los equipos de transporte solar de Kara Solar →</a></p>
 
         </div>
 
@@ -158,7 +164,7 @@
 
           <label data-il8n="step2-downpayment-label">Pago inicial ($)</label>
           <small data-il8n="step2-downpayment-hint">Mientras más se pague de entrada, menos se pagará después.</small>
-          <input id="downpayment" type="number" class="form-control" value="200">
+          <input id="downpayment" type="number" class="form-control" value="200" oninput="calculateResults();">
 
           <label data-il8n="step2-subsidy-label">Subsidio o ayuda económica ($)</label>
           <small data-il8n="step2-subsidy-hint">De fundaciones, fondos comunitarios u otros aliados. Si no aplica, deja en blanco.</small>
@@ -180,7 +186,7 @@
               ← Volver
             </button>
 
-            <button class="primary-btn" onclick="goToStep(3); calculateResults();" data-il8n="btn-continue">
+            <button class="primary-btn" onclick="goToStep(3); calculateResults(); submitToSheet();" data-il8n="btn-continue">
               Continuar →
             </button>
 
@@ -202,7 +208,7 @@
             id="monthly_payment"
             type="range"
             class="form-range"
-            min="50"
+            min="0"
             max="400"
             step="1"
             value="80"
@@ -231,6 +237,12 @@
             <strong data-il8n="warning-title">El plazo de pago supera los 5 años</strong>
             <p data-il8n="warning-text">Con estos datos, el bote tardaría más de 5 años en pagarse — más que el período de garantía de Motores Amazonas.<br>
             Considera aumentar el pago mensual o el pago inicial para acortar el plazo.</p>
+          </div>
+        </div>
+        <div class="warning-card" id="warning-large-dp">
+          <div class="warning-text">
+            <strong data-il8n="warning-large-dp-title">Pago inicial muy alto</strong>
+            <p data-il8n="warning-large-dp-text">El monto financiado es muy pequeño. Las cuotas se ajustaron automáticamente. Puede haber pequeñas diferencias de redondeo en los totales.</p>
           </div>
         </div>
 
@@ -423,6 +435,9 @@
           </tbody>
         </table>
       </div>
+      <div class="info-card">
+        <p data-il8n="footer-credits">Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a></p>
+      </div>
     </div><!-- /page-supuestos -->
 
     <!-- Page: Protocolo de datos -->
@@ -483,7 +498,6 @@
         <p class="site-footer-desc" data-il8n="footer-desc">"Kara" significa "un sueño que se hace realidad" en achuar. Nuestro sueño es una Amazonía solar. Estamos haciendo realidad ese sueño construyendo un ecosistema unificado que integra tecnología limpia, gobernanza comunitaria y financiamiento sostenible para escalar la movilidad fluvial solar desde el territorio achuar hacia toda la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a></p>
       </div>
       <p class="site-footer-cta" data-il8n="footer-cta">¿Listo para hacer la transición al transporte fluvial solar? Escríbenos a <a href="mailto:hola@karasolar.com">hola@karasolar.com</a></p>
-      <p class="site-footer-credits" data-il8n="footer-credits">Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Borja Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a></p>
     </footer>
 
   </div>
@@ -495,6 +509,7 @@
 <script src="calculator.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="map.js"></script>
+<script src="submit.js"></script>
 
 </body>
 </html>
