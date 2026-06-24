@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Ríos Solares | Kara Solar</title>
+
+  <link rel="icon" type="image/png" href="KARA_SOLAR_LOGO_B_N.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="lang-switcher">
+  <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
+  <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+  <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+</div>
+
+<button class="hamburger-btn" onclick="openMenu()" aria-label="Menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="side-menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
+
+<div class="side-menu" id="side-menu">
+  <div class="side-menu-logo">Calculadora Ríos Solares</div>
+  <nav>
+    <a href="#" class="active" id="nav-calculadora" onclick="navigateTo('calculadora'); return false;" data-il8n="nav-calculadora">Calculadora</a>
+    <a href="#" id="nav-supuestos"  onclick="navigateTo('supuestos');  return false;" data-il8n="nav-supuestos">Supuestos</a>
+    <a href="#" id="nav-protocolo"  onclick="navigateTo('protocolo');  return false;" data-il8n="nav-protocolo">Protocolo de datos</a>
+    <a href="#" id="nav-aviso"      onclick="navigateTo('aviso');      return false;" data-il8n="nav-aviso">Aviso Legal</a>
+  </nav>
+  <div class="side-menu-footer">
+    <img src="KARA_SOLAR_LOGO_COLOR.png" alt="Kara Solar" class="side-menu-footer-logo">
+    <p class="side-menu-tagline" data-il8n="side-tagline">Construyendo un ecosistema unificado para el transporte fluvial solar en la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a></p>
+  </div>
+</div>
+
+<div class="container-fluid app-shell">
+  <div class="main-container px-2 px-md-4">
+
+    <!-- Page: Calculadora -->
+    <div id="page-calculadora" class="menu-page active">
+
+      <div class="hero">
+        <h1 data-il8n="hero-title">Calculadora Ríos Solares</h1>
+        <p data-il8n="hero-desc">
+          Esta herramienta permite comparar costos, estimar ahorros y evaluar la viabilidad financiera de cambiar de gasolina a transporte solar <strong>fluvial en la Amazonia</strong>.
+        </p>
+      </div>
+
+      <!-- STEP 1 -->
+      <section class="wizard-step active" id="step-1">
+
+        <div class="section-card">
+          <div class="section-title" data-il8n="step1-title">Paso 1 de 3 — Uso Actual</div>
+
+          <label data-il8n="step1-location-header">UBICACIÓN</label>
+          <label data-il8n="step1-location-label">Selecciona la ubicación aproximada</label>
+
+          <small data-il8n="step1-location-hint">
+            Haz clic en el mapa para ubicar la comunidad.
+          </small>
+
+          <div class="map-search">
+            <div class="map-search-input-wrap">
+              <input type="text" id="map-search-input" class="form-control" placeholder="Buscar ubicación..." data-il8n="map-search-placeholder" autocomplete="off">
+              <ul class="map-search-dropdown" id="map-search-dropdown"></ul>
+            </div>
+            <button class="search-btn" onclick="searchLocation()" data-il8n="btn-search">Buscar</button>
+          </div>
+
+          <div id="map"></div>
+
+          <div class="controls">
+            <button onclick="locateUser()" data-il8n="btn-locate">Localizame</button>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title" data-il8n="step1-gas-title">Uso actual — gasolina</div>
+
+          <label data-il8n="step1-km-week-label">Kilómetros navegados en bote por semana en promedio</label>
+          <input id="km_week" type="number" class="form-control" value="50">
+
+          <label data-il8n="step1-gas-price-label">Precio local por galón de gasolina</label>
+          <input id="gas_price" type="number" class="form-control" value="7.5">
+
+          <label data-il8n="step1-gas-engine-label">Costo de un motor peque-peque de gasolina en la zona ($)</label>
+          <small data-il8n="step1-gas-engine-hint">¿No sabes? Déjalo como está.</small>
+          <input id="gas_engine_cost" type="number" class="form-control" value="900">
+
+          <label data-il8n="step1-km-per-gal-label">Kilómetros por galón</label>
+          <small data-il8n="step1-km-per-gal-hint">Rendimiento del motor. ¿No sabes? Déjalo como está.</small>
+          <input id="km_per_gal" type="number" class="form-control" value="14">
+
+          <label data-il8n="step1-repair-label">Gasto anual en mantenimiento y reparaciones del motor de gasolina ($)</label>
+          <small data-il8n="step1-repair-hint">Incluye aceite, viajes al mecánico y cualquier otro gasto para mantener tu motor. ¿No sabes? Déjalo como está.</small>
+          <input id="repair_cost_yr" type="number" class="form-control" value="300">
+
+          <div class="d-flex justify-content-end mt-4">
+            <button class="primary-btn" onclick="goToStep(2)" data-il8n="btn-continue">
+              Continuar →
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="wizard-step" id="step-2">
+
+        <div class="section-card">
+
+          <div class="section-title" data-il8n="step2-title">Paso 2 de 3 — Configuración solar</div>
+
+          <label data-il8n="step2-electric-label">
+            Costo del sistema de transporte solar de Kara Solar (US$)
+          </label>
+          <small data-il8n="step2-electric-hint">El sistema básico incluye un motor eléctrico y una batería y cuesta US$6.000. Cada batería permite recorrer unos 30 km por carga.</small>
+
+          <input id="electric_price" type="number" class="form-control" value="6000">
+
+          <label data-il8n="step2-panels-label">¿Se agregarán paneles solares para cargar el bote?</label>
+          <small data-il8n="step2-panels-hint">Los paneles cuestan $1.500. Si se usará otra fuente de energía, deja en NO.</small>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="panel-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="panel-no" data-il8n="btn-no">No</button>
+          </div>
+
+          <label data-il8n="step2-battery-label">¿Se agregará una segunda batería?</label>
+          <small data-il8n="step2-battery-hint">Una batería extra cuesta $2.500 y permite mayor tiempo y distancia de viaje, además de usar una batería mientras la otra se carga.</small>
+
+          <div class="toggle-group">
+            <button class="toggle-btn" id="battery-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="battery-no" data-il8n="btn-no">No</button>
+          </div>
+
+          <label data-il8n="step2-hull-label">¿Se añadirá un casco de fibra de vidrio?</label>
+          <small data-il8n="step2-hull-hint">El costo de un casco de fibra de vidrio varía, pero el promedio en Ecuador es de US$2.000. Si ya cuenta con un casco de canoa de cola larga en buena condición, es probable que el motor eléctrico pueda instalarse en el casco existente.</small>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="hull-yes" data-il8n="btn-yes">Sí</button>
+            <button class="toggle-btn active" id="hull-no" data-il8n="btn-no">No</button>
+          </div>
+
+          <div class="breakdown-card" style="margin-top:1.5rem">
+            <div class="breakdown-row">
+              <span data-il8n="step2-total-label">Total del sistema configurado</span>
+              <span id="step2-system-total">US$6,000</span>
+            </div>
+          </div>
+
+          <p class="catalogue-link"><a href="catalogo_ma_2026.pdf" target="_blank" data-il8n="step2-catalogue-link">Conoce más sobre los equipos de transporte solar de Kara Solar →</a></p>
+
+        </div>
+
+        <div class="section-card">
+
+          <div class="section-title" data-il8n="step2-payment-title">PLAN DE PAGO</div>
+
+          <label data-il8n="step2-downpayment-label">Pago inicial ($)</label>
+          <small data-il8n="step2-downpayment-hint">Mientras más se pague de entrada, menos se pagará después.</small>
+          <input id="downpayment" type="number" class="form-control" value="200" oninput="calculateResults();">
+
+          <label data-il8n="step2-subsidy-label">Subsidio o ayuda económica ($)</label>
+          <small data-il8n="step2-subsidy-hint">De fundaciones, fondos comunitarios u otros aliados. Si no aplica, deja en blanco.</small>
+          <input id="subsidy" type="number" class="form-control" value="0">
+
+          <div class="label-row">
+            <label data-il8n="step2-interest-label">Tasa de interés anual (%)</label>
+            <span class="info-tooltip">
+              <button class="info-icon" type="button" aria-label="info">i</button>
+              <span class="tooltip-text" data-il8n="tooltip-interest"></span>
+            </span>
+          </div>
+          <small data-il8n="step2-interest-hint">Si no aplica, deja en blanco.</small>
+          <input id="interest" type="number" class="form-control" value="0">
+
+          <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
+
+            <button class="primary-btn" onclick="goToStep(1)" data-il8n="btn-back">
+              ← Volver
+            </button>
+
+            <button class="primary-btn" onclick="goToStep(3); calculateResults(); submitToSheet();" data-il8n="btn-continue">
+              Continuar →
+            </button>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="wizard-step" id="step-3">
+
+        <div class="section-card">
+          <div class="section-title" data-il8n="step3-title">Paso 3 de 3 — Resultados</div>
+
+          <label data-il8n="step3-monthly-label">Pago mensual</label>
+          <small data-il8n="step3-monthly-hint">Ajuste el pago mensual para ver los resultados actualizados. También puede igualarlo a lo que gasta actualmente en gasolina.</small>
+
+          <input
+            id="monthly_payment"
+            type="range"
+            class="form-range"
+            min="0"
+            max="400"
+            step="1"
+            value="80"
+            oninput="calculateResults();">
+
+          <div class="fw-bold mt-2">
+            <span data-il8n="step3-monthly-prefix">Pago mensual estimado:</span>
+            <span id="monthly_payment_label">US$80</span>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
+
+            <button class="primary-btn" onclick="goToStep(2)" data-il8n="btn-back">
+              ← Volver
+            </button>
+            <button class="primary-btn match-gas-btn" onclick="matchGasPayment()" data-il8n="btn-match-gas">
+              Pagar mi costo mensual de gasolina
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Warning: shown when payoff > 5 years -->
+        <div class="warning-card" id="warning-term">
+          <div class="warning-text">
+            <strong data-il8n="warning-title">El plazo de pago supera los 5 años</strong>
+            <p data-il8n="warning-text">Con estos datos, el bote tardaría más de 5 años en pagarse — más que el período de garantía de Motores Amazonas.<br>
+            Considera aumentar el pago mensual o el pago inicial para acortar el plazo.</p>
+          </div>
+        </div>
+        <div class="warning-card" id="warning-large-dp">
+          <div class="warning-text">
+            <strong data-il8n="warning-large-dp-title">Pago inicial muy alto</strong>
+            <p data-il8n="warning-large-dp-text">El monto financiado es muy pequeño. Las cuotas se ajustaron automáticamente. Puede haber pequeñas diferencias de redondeo en los totales.</p>
+          </div>
+        </div>
+
+        <div class="result-card">
+
+          <h2 data-il8n="results-title">Resultados</h2>
+
+          <!-- 1. Equipment cost breakdown -->
+          <div class="breakdown-card">
+            <h3 data-il8n="bd-system-title">Sistema solar seleccionado</h3>
+            <div class="breakdown-row">
+              <span data-il8n="bd-motor-label">Motor eléctrico + batería (Kara Solar)</span>
+              <span id="bd-motor">US$6.000</span>
+            </div>
+            <div class="breakdown-row" id="bd-panels-row">
+              <span data-il8n="bd-panels-label">Paneles solares</span>
+              <span id="bd-panels">US$1.500</span>
+            </div>
+            <div class="breakdown-row" id="bd-battery-row">
+              <span data-il8n="bd-battery-label">Segunda batería</span>
+              <span id="bd-battery">US$2.500</span>
+            </div>
+            <div class="breakdown-row" id="bd-hull-row" style="display:none">
+              <span data-il8n="bd-hull-label">Casco de fibra de vidrio</span>
+              <span id="bd-hull">US$2.000</span>
+            </div>
+            <div class="breakdown-row">
+              <span data-il8n="bd-total-label">Costo total del sistema</span>
+              <span id="bd-total">US$10.000</span>
+            </div>
+          </div>
+
+          <!-- 2. Summary narrative -->
+          <div class="summary-card">
+            <span data-il8n="sum-text-1">Con los datos ingresados, se estima que cambiar a un bote solar permitiría pasar de gastar</span>
+            <strong id="sum-gas-monthly">$—</strong>
+            <span data-il8n="sum-text-2">al mes en gasolina y mantenimiento a pagar</span>
+            <strong id="sum-solar-monthly">$—</strong>
+            <span data-il8n="sum-text-3">al mes por el bote solar —</span>
+            <span id="sum-diff-text"></span>
+            <span data-il8n="sum-text-4"> El bote estaría pagado en</span>
+            <strong id="sum-payoff">—</strong><span data-il8n="sum-text-5">, y en 10 años el ahorro total sería de</span>
+            <strong id="sum-savings">$—</strong>.
+          </div>
+
+          <!-- 3. Comparison table — restyled to match breakdown-card -->
+          <div class="breakdown-card" style="margin-top:1.5rem;">
+            <h3 data-il8n="comparison-title">Comparación de Ahorro a Largo Plazo</h3>
+            <div class="breakdown-row breakdown-row--3col breakdown-row--header">
+              <span data-il8n="col-concept">Concepto</span>
+              <span data-il8n="col-gas">Gasolina</span>
+              <span data-il8n="col-solar">Solar</span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span data-il8n="row-upfront">Costo inicial</span>
+              <span id="gas-upfront"></span>
+              <span id="solar-upfront"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span data-il8n="row-monthly">Costo mensual</span>
+              <span id="gas-monthly"></span>
+              <span id="solar-monthly"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span data-il8n="row-10y">Total a 10 años</span>
+              <span id="gas-10y"></span>
+              <span id="solar-10y"></span>
+            </div>
+            <div class="breakdown-row breakdown-row--3col">
+              <span data-il8n="row-savings">Ahorro total</span>
+              <span>—</span>
+              <span id="savings-total"></span>
+            </div>
+          </div>
+
+          <!-- 4. Metric twin cards -->
+          <div class="metric-grid">
+
+            <div class="metric-card">
+              <div class="metric-label" data-il8n="metric-payoff">
+                Años para terminar de pagar
+              </div>
+              <div class="metric-value" id="payoff-years"></div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-label" data-il8n="metric-roi">
+                Tiempo para recuperar la inversión
+              </div>
+              <div class="metric-value" id="roi-years"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Próximos Pasos -->
+        <div class="next-steps-card">
+          <div class="section-title" data-il8n="nextsteps-title">PRÓXIMOS PASOS</div>
+
+          <div class="next-step-item">
+            <h3 data-il8n="nextsteps-download-title">Descargar Resultados</h3>
+            <p data-il8n="nextsteps-download-desc">Guarda tus resultados y compártelos con amigos y familiares.</p>
+            <button class="primary-btn full-btn" onclick="downloadResults()" data-il8n="btn-download-results">Descargar Resultados</button>
+          </div>
+
+          <div class="next-step-item">
+            <h3 data-il8n="nextsteps-catalogue-title">Ver Catálogo de Equipos</h3>
+            <p data-il8n="nextsteps-catalogue-desc">Conoce más sobre los sistemas de transporte solar de Kara Solar: cómo funciona, especificaciones técnicas y servicios postventa.</p>
+            <!-- NOTE: HREF TO CATALOGUE PENDING — replace catalogo_ma_2026.pdf with updated catalogue when available -->
+            <a href="catalogo_ma_2026.pdf" target="_blank">
+              <button class="primary-btn full-btn" data-il8n="btn-view-catalogue">Ver Catálogo</button>
+            </a>
+          </div>
+
+          <div class="next-step-item">
+            <h3 data-il8n="nextsteps-contact-title">Compras y Consultas</h3>
+            <p data-il8n="nextsteps-contact-desc">¿Listo para hacer la transición al transporte fluvial solar? Ya sea que tengas preguntas, quieras programar una reunión, o estés listo para comprar, envíanos un mensaje breve a <a href="mailto:hola@karasolar.com">hola@karasolar.com</a>.</p>
+            <a href="mailto:hola@karasolar.com">
+              <button class="primary-btn full-btn" data-il8n="btn-contact">Contáctanos</button>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+    </div><!-- /page-calculadora -->
+
+    <!-- Page: Supuestos -->
+    <div id="page-supuestos" class="menu-page">
+      <div class="info-card" data-il8n="page-supuestos-content">
+        <h2>¿Cómo funciona esta calculadora?</h2>
+        <p>Esta herramienta estima el costo total del transporte a gasolina, lo compara con el costo de un sistema solar de Motores Amazonas, y calcula cuánto tiempo tomaría pagar el bote y recuperar la inversión. Los resultados son estimaciones y pueden variar según el uso real y las condiciones locales.</p>
+
+        <h3>Supuestos principales</h3>
+
+        <h3>Costo mensual en gasolina y mantenimiento</h3>
+        <p>
+          Galones/mes = (km/semana × 4.33) ÷ km/galón<br>
+          Combustible/mes = galones/mes × precio/galón<br>
+          Total mensual = combustible/mes + (mantenimiento anual ÷ 12)
+        </p>
+
+        <h3>Costo total del sistema solar</h3>
+        <p>
+          Costo total = motor + paneles ($1.500 si aplica) + batería extra ($2.500 si aplica)<br>
+          Monto a financiar = costo total − subsidio − pago inicial
+        </p>
+
+        <h3>Años para terminar de pagar el bote</h3>
+        <p>
+          Sin interés: meses = monto financiado ÷ pago mensual → años = meses ÷ 12<br>
+          Con interés: fórmula estándar de amortización
+        </p>
+
+        <h3>Comparación a 10 años</h3>
+        <p>En el lado de gasolina se incluye el costo inicial del motor más el gasto mensual en combustible y mantenimiento durante 120 meses. En el lado solar, se incluye el pago inicial y los pagos mensuales hasta completar el pago del bote, y $0 después.</p>
+        <p>
+          Total gasolina 10 años = costo motor gasolina + (gasto mensual × 120)<br>
+          Total solar 10 años = pago inicial + (pago mensual × meses hasta pagar, máx 120)
+        </p>
+
+        <h3>Tiempo para recuperar la inversión (ROI)</h3>
+        <p>La inversión neta es la diferencia entre el costo del sistema solar y el costo del motor de gasolina que se reemplaza. El tiempo de recuperación es cuántos años de ahorro en combustible y mantenimiento se necesitan para cubrir esa inversión neta.</p>
+        <p>
+          Inversión neta = costo total sistema solar − costo motor gasolina<br>
+          Ahorro anual = (gasto mensual combustible + mantenimiento) × 12<br>
+          ROI = inversión neta ÷ ahorro anual
+        </p>
+
+        <h3>Ejemplo</h3>
+        <p>Una familia de Sharamentsa, Ecuador, navega 60 km/semana. Precio gasolina: $7.50/galón. Rendimiento: 14 km/galón. Mantenimiento: $300/año. Motor gasolina: $900. Sistema solar completo ($10.000). Pago inicial: $500. Pago mensual: $150. Sin interés, sin subsidio.</p>
+
+        <table class="comparison-table" style="margin-top:1rem">
+          <thead>
+            <tr>
+              <th>Resultado estimado</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gasto mensual gasolina + mantenimiento</td><td>$168</td></tr>
+            <tr><td>Pago mensual por el bote solar</td><td>$150</td></tr>
+            <tr><td>Ahorro mensual durante el pago</td><td>$18</td></tr>
+            <tr><td>Años para terminar de pagar</td><td>5.1 años</td></tr>
+            <tr><td>Inversión neta (solar − motor gasolina)</td><td>$9.100</td></tr>
+            <tr><td>Ahorro anual (combustible + mantenimiento)</td><td>$2.016</td></tr>
+            <tr><td>Tiempo para recuperar la inversión</td><td>4.5 años</td></tr>
+            <tr><td>Ahorro total en 10 años</td><td>~$8.260</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-card">
+        <p data-il8n="footer-credits">Esta calculadora fue creada por Leif Maynard, Daniel Enriquez y Daniela Kaisin. Para preguntas sobre la calculadora, <a href="mailto:hola@karasolar.com">contáctenos →</a></p>
+      </div>
+    </div><!-- /page-supuestos -->
+
+    <!-- Page: Protocolo de datos -->
+    <div id="page-protocolo" class="menu-page">
+      <div class="info-card" data-il8n="page-protocolo-content">
+        <h2>Protocolo de recopilación de datos</h2>
+        <p>La Calculadora Ríos Solares recopila datos con el objetivo de mejorar la planificación del transporte solar en la Amazonía y apoyar la misión de Fundación Kara Solar.</p>
+
+        <h3>¿Qué datos se recopilan?</h3>
+        <ul>
+          <li>Ubicación (comunidad y país)</li>
+          <li>Kilómetros navegados por semana</li>
+          <li>Precio local del galón de gasolina</li>
+          <li>Rendimiento del motor (km/galón)</li>
+          <li>Costo del motor de gasolina en la zona</li>
+          <li>Gasto anual en mantenimiento</li>
+          <li>Configuración del sistema solar seleccionado</li>
+          <li>Parámetros de pago (pago inicial, pago mensual, interés, subsidio)</li>
+        </ul>
+
+        <h3>¿Cómo se usan los datos?</h3>
+        <p>Los datos se almacenan en una hoja de cálculo interna de Fundación Kara Solar. Se utilizan exclusivamente para:</p>
+        <ul>
+          <li>Analizar el costo del combustible y los patrones de uso de botes en distintas zonas de la Amazonía</li>
+          <li>Mejorar los modelos financieros para la expansión del transporte solar</li>
+          <li>Informar estrategias de financiamiento comunitario y alianzas con fondos y fundaciones</li>
+          <li>Reportes internos y de impacto para socios y financiadores</li>
+        </ul>
+
+        <h3>Privacidad y confidencialidad</h3>
+        <p>Los datos no se venden a terceros bajo ninguna circunstancia. No se recopila información de identificación personal más allá de la ubicación geográfica general. Los datos se almacenan de forma segura y solo el equipo de Fundación Kara Solar tiene acceso a ellos. Datos agregados sin identificadores específicos pueden compartirse en reportes públicos de impacto.</p>
+      </div>
+    </div><!-- /page-protocolo -->
+
+    <!-- Page: Aviso Legal -->
+    <div id="page-aviso" class="menu-page">
+      <div class="info-card" data-il8n="page-aviso-content">
+        <h2>Aviso legal y descargo de responsabilidad</h2>
+
+        <h3>Estimaciones, no garantías</h3>
+        <p>Los resultados de esta calculadora son estimaciones basadas en los datos ingresados y en supuestos generales. Los ahorros reales, plazos de pago y tiempos de recuperación de inversión pueden variar según el uso real del bote, las fluctuaciones en el precio de la gasolina, las condiciones de financiamiento y otros factores locales.</p>
+
+        <h3>Uso de datos</h3>
+        <p>Al usar esta herramienta, se acepta que los datos ingresados sean recopilados por Fundación Kara Solar con fines de investigación y planificación, según el Protocolo de datos. Los datos no serán vendidos a terceros.</p>
+
+        <h3>Sin responsabilidad financiera</h3>
+        <p>Esta herramienta no constituye asesoramiento financiero, legal o de inversión. Fundación Kara Solar y Motores Amazonas no se hacen responsables de decisiones tomadas basándose en los resultados de esta calculadora.</p>
+
+        <h3>Precios de referencia</h3>
+        <p>Los precios de los sistemas solares de Motores Amazonas son de referencia y pueden cambiar. Para precios actualizados y disponibilidad, contactar directamente a Motores Amazonas en <a href="https://motoresamazonas.com/" target="_blank">motoresamazonas.com</a>.</p>
+      </div>
+    </div><!-- /page-aviso -->
+
+    <!-- Persistent footer -->
+    <footer class="site-footer">
+      <div class="site-footer-brand">
+        <h3 class="site-footer-title" data-il8n="footer-title">Sobre Kara Solar</h3>
+        <p class="site-footer-desc" data-il8n="footer-desc">"Kara" significa "un sueño que se hace realidad" en achuar. Nuestro sueño es una Amazonía solar. Estamos haciendo realidad ese sueño construyendo un ecosistema unificado que integra tecnología limpia, gobernanza comunitaria y financiamiento sostenible para escalar la movilidad fluvial solar desde el territorio achuar hacia toda la Amazonía. <a href="https://karasolar.com/" target="_blank">Saber más →</a></p>
+      </div>
+      <p class="site-footer-cta" data-il8n="footer-cta">¿Listo para hacer la transición al transporte fluvial solar? Escríbenos a <a href="mailto:hola@karasolar.com">hola@karasolar.com</a></p>
+    </footer>
+
+  </div>
+</div>
+
+<script src="lang.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="calculator.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="map.js"></script>
+<script src="submit.js"></script>
+
+</body>
+</html>
