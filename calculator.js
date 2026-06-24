@@ -160,6 +160,7 @@ function calculateResults() {
 
   document.getElementById('warning-term').classList.toggle('visible', months > 60);
 
+  document.getElementById('step2-system-total').innerText = formatMoney(solarCost);
   document.getElementById('bd-motor').innerText   = formatMoney(electricPrice);
   document.getElementById('bd-panels').innerText  = formatMoney(1500);
   document.getElementById('bd-battery').innerText = formatMoney(2500);
@@ -215,7 +216,7 @@ function downloadResults() {
     es: {
       title:      'Calculadora Ríos Solares | Kara Solar',
       system:     'Sistema de transporte solar configurado',
-      motor:      'Motor eléctrico + batería (Kara Solar)',
+      motor:      'Motor eléctrico + batería',
       panels:     'Paneles solares', battery: 'Segunda batería', hull: 'Casco de fibra de vidrio',
       total:      'Costo total del sistema',
       comparison: 'Comparación de costos',
@@ -231,7 +232,7 @@ function downloadResults() {
     en: {
       title:      'Ríos Solares Calculator | Kara Solar',
       system:     'Configured solar transport system',
-      motor:      'Electric motor + battery (Kara Solar)',
+      motor:      'Electric motor + battery',
       panels:     'Solar panels', battery: 'Second battery', hull: 'Fiberglass hull',
       total:      'Total system cost',
       comparison: 'Cost comparison',
@@ -247,7 +248,7 @@ function downloadResults() {
     pt: {
       title:      'Calculadora Ríos Solares | Kara Solar',
       system:     'Sistema de transporte solar configurado',
-      motor:      'Motor elétrico + bateria (Kara Solar)',
+      motor:      'Motor elétrico + bateria',
       panels:     'Painéis solares', battery: 'Segunda bateria', hull: 'Casco de fibra de vidro',
       total:      'Custo total do sistema',
       comparison: 'Comparação de custos',
